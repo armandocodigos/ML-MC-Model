@@ -21,10 +21,10 @@ wrangling ={'FileAST':{'pop':['coord'],'list':'ext'},
             'Typedef':{'pop':['coord','quals','storage'],'dict':['type']}}
 #------------------------------------------------------------------------------------
 import graphviz
-def convert_ast(polybench, name, multiple=True):
+def summarize_ast(polybench, name, multiple=True):
     g = graphviz.Digraph('AST', filename='AST_' + name, strict=not multiple)
     g.node(name)
-    convert_ast_r(polybench[name]['ast'], g, name, multiple)
+    summarize_ast_r(polybench[name]['ast'], g, name, multiple)
     return g
 #------------------------------------------------------------------------------------
 def obtain_label(graph, v1, v2):
@@ -34,7 +34,7 @@ def obtain_label(graph, v1, v2):
     value = 0
     for x in graph.body:
         if (search in x):
-            value = int(x.split('=')[-1][:-2])
+            value = int(x.split('=')[-1][:-1])
     return value
 #------------------------------------------------------------------------------------
 def has_edge(graph, v1, v2):
@@ -44,7 +44,7 @@ def has_edge(graph, v1, v2):
     #print(len(graph.body), graph.body[-1])
     return any([(search in x) for x in graph.body])
 #------------------------------------------------------------------------------------
-def convert_ast_r(ast, graph, father_name, multiple=True):
+def summarize_ast_r(ast, graph, father_name, multiple=True):
     type_s = ast['_nodetype']
     if (multiple):
         graph.edge(father_name, type_s)
@@ -56,10 +56,32 @@ def convert_ast_r(ast, graph, father_name, multiple=True):
     if ('list' in wrangling[type_s]):
         list_s = wrangling[type_s]['list']
         for i in range(len(ast[list_s])):
-            convert_ast_r(ast[list_s][i], graph, type_s, multiple)
+            summarize_ast_r(ast[list_s][i], graph, type_s, multiple)
     if ('dict' in wrangling[type_s]):
         dict_l = wrangling[type_s]['dict']
         for i in range(len(dict_l)):
             if(ast[dict_l[i]] != None):
-                convert_ast_r(ast[dict_l[i]], graph, type_s, multiple)
+                summarize_ast_r(ast[dict_l[i]], graph, type_s, multiple)
 #------------------------------------------------------------------------------------
+def unique_ast(polybench, name):
+    g = graphviz.Digraph('AST', filename='AST_' + name)
+    g.node(name)
+    total = unique_ast_r(polybench[name]['ast'], g, name, 0)
+    print(total)
+    return g
+#------------------------------------------------------------------------------------
+def unique_ast_r(ast, graph, father_name, count):
+    type_s = ast['_nodetype']
+    child_name = type_s+'_'+str(count)
+    graph.edge(father_name, child_name)
+        
+    if ('list' in wrangling[type_s]):
+        list_s = wrangling[type_s]['list']
+        for i in range(len(ast[list_s])):
+            count = unique_ast_r(ast[list_s][i], graph, child_name, count+1)
+    if ('dict' in wrangling[type_s]):
+        dict_l = wrangling[type_s]['dict']
+        for i in range(len(dict_l)):
+            if(ast[dict_l[i]] != None):
+                count = unique_ast_r(ast[dict_l[i]], graph, child_name, count+1)
+    return count
