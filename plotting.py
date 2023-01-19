@@ -67,7 +67,6 @@ def unique_ast(polybench, name):
     g = graphviz.Digraph('AST', filename='AST_' + name)
     g.node(name)
     total = unique_ast_r(polybench[name]['ast'], g, name, 0)
-    print(total)
     return g
 #------------------------------------------------------------------------------------
 def unique_ast_r(ast, graph, father_name, count):

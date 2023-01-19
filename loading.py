@@ -9,3 +9,23 @@ def save_file(file, filename):
     pickle.dump(file, open(filename, 'wb'))
     print('File saved successfully')
 #------------------------------------------------------
+import os
+def clean_embeddings(mydir=".\\Embeddings\\"):
+    for f in os.listdir(mydir):
+        if f.endswith(".csv"):
+            os.remove(os.path.join(mydir, f))
+#------------------------------------------------------
+def append_file(name, filename, values):
+    file = ".\\Embeddings\\" + filename + ".csv"
+    with open(file, "a") as f:
+        f.write(name + ',' + ','.join([str(i) for i in list(values)]) + '\n')
+#------------------------------------------------------
+import csv
+def clean_graph_regex(headers, filename="graph_regex"):
+    file =".\\Embeddings\\" + filename + ".csv"
+    if os.path.exists(file):
+        os.remove(file)
+    with open(file, 'w', newline='') as csvfile: 
+        csvwriter = csv.writer(csvfile) 
+        csvwriter.writerow(headers)
+#------------------------------------------------------
