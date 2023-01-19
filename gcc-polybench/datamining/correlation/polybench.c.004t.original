@@ -1,0 +1,184 @@
+
+;; Function __bswap_16 (null)
+;; enabled by -tree-original
+
+
+{
+  return (__uint16_t) __builtin_bswap16 ((int) __bsx);
+}
+
+
+;; Function __bswap_32 (null)
+;; enabled by -tree-original
+
+
+{
+  return (__uint32_t) __builtin_bswap32 (__bsx);
+}
+
+
+;; Function __bswap_64 (null)
+;; enabled by -tree-original
+
+
+{
+  return (__uint64_t) __builtin_bswap64 (__bsx);
+}
+
+
+;; Function __uint16_identity (null)
+;; enabled by -tree-original
+
+
+{
+  return __x;
+}
+
+
+;; Function __uint32_identity (null)
+;; enabled by -tree-original
+
+
+{
+  return __x;
+}
+
+
+;; Function __uint64_identity (null)
+;; enabled by -tree-original
+
+
+{
+  return __x;
+}
+
+
+;; Function rtclock (null)
+;; enabled by -tree-original
+
+
+{
+  return 0.0;
+}
+
+
+;; Function polybench_flush_cache (null)
+;; enabled by -tree-original
+
+
+{
+  int cs = 4194560;
+  double * flush = (double *) calloc ((size_t) cs, 8);
+  int i;
+  double tmp = 0.0;
+  static const char __PRETTY_FUNCTION__[22] = "polybench_flush_cache";
+
+    static const char __PRETTY_FUNCTION__[22] = "polybench_flush_cache";
+    int cs = 4194560;
+    double * flush = (double *) calloc ((size_t) cs, 8);
+    int i;
+    double tmp = 0.0;
+  i = 0;
+  goto <D.5000>;
+  <D.4999>:;
+  tmp = *(flush + (sizetype) ((long unsigned int) i * 8)) + tmp;
+  i++ ;
+  <D.5000>:;
+  if (i < cs) goto <D.4999>; else goto <D.5001>;
+  <D.5001>:;
+  {
+    if (tmp <= 1.0e+1)
+      {
+        (void) 0;
+      }
+    else
+      {
+        __assert_fail ((const char *) "tmp <= 10.0", (const char *) "polybench.c", 123, (const char *) &__PRETTY_FUNCTION__);
+      }
+  }
+  free ((void *) flush);
+}
+
+
+;; Function polybench_prepare_instruments (null)
+;; enabled by -tree-original
+
+
+{
+  polybench_flush_cache ();
+}
+
+
+;; Function polybench_timer_start (null)
+;; enabled by -tree-original
+
+
+{
+  polybench_prepare_instruments ();
+  polybench_t_start = rtclock ();
+}
+
+
+;; Function polybench_timer_stop (null)
+;; enabled by -tree-original
+
+
+{
+  polybench_t_end = rtclock ();
+}
+
+
+;; Function polybench_timer_print (null)
+;; enabled by -tree-original
+
+
+{
+  printf ((const char * restrict) "%0.6f\n", polybench_t_end - polybench_t_start);
+}
+
+
+;; Function xmalloc (null)
+;; enabled by -tree-original
+
+
+{
+  void * ret = 0B;
+  size_t padded_sz = alloc_sz + polybench_inter_array_padding_sz;
+  int err = posix_memalign (&ret, 4096, padded_sz);
+
+    void * ret = 0B;
+  polybench_inter_array_padding_sz = polybench_inter_array_padding_sz;
+    size_t padded_sz = alloc_sz + polybench_inter_array_padding_sz;
+    int err = posix_memalign (&ret, 4096, padded_sz);
+  if (ret == 0B || err != 0)
+    {
+      fprintf (stderr, (const char * restrict) "[PolyBench] posix_memalign: cannot allocate memory");
+      exit (1);
+    }
+  return ret;
+}
+
+
+;; Function polybench_free_data (null)
+;; enabled by -tree-original
+
+
+{
+  free (ptr);
+}
+
+
+;; Function polybench_alloc_data (null)
+;; enabled by -tree-original
+
+
+{
+  size_t val = (size_t) n;
+  void * ret = xmalloc (val);
+
+    size_t val = (size_t) n;
+  val = (size_t) elt_size * val;
+    void * ret = xmalloc (val);
+  return ret;
+}
+

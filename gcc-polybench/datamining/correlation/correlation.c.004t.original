@@ -1,0 +1,253 @@
+
+;; Function __bswap_16 (null)
+;; enabled by -tree-original
+
+
+{
+  return (__uint16_t) __builtin_bswap16 ((int) __bsx);
+}
+
+
+;; Function __bswap_32 (null)
+;; enabled by -tree-original
+
+
+{
+  return (__uint32_t) __builtin_bswap32 (__bsx);
+}
+
+
+;; Function __bswap_64 (null)
+;; enabled by -tree-original
+
+
+{
+  return (__uint64_t) __builtin_bswap64 (__bsx);
+}
+
+
+;; Function __uint16_identity (null)
+;; enabled by -tree-original
+
+
+{
+  return __x;
+}
+
+
+;; Function __uint32_identity (null)
+;; enabled by -tree-original
+
+
+{
+  return __x;
+}
+
+
+;; Function __uint64_identity (null)
+;; enabled by -tree-original
+
+
+{
+  return __x;
+}
+
+
+;; Function init_array (null)
+;; enabled by -tree-original
+
+
+{
+  int i;
+  int j;
+
+    int i;
+    int j;
+  *float_n = 1.4e+3;
+  i = 0;
+  goto <D.4688>;
+  <D.4687>:;
+  j = 0;
+  goto <D.4685>;
+  <D.4684>:;
+  (*(data + (sizetype) ((long unsigned int) i * 9600)))[j] = (double) (i * j) / 1.2e+3 + (double) i;
+  j++ ;
+  <D.4685>:;
+  if (j <= 1199) goto <D.4684>; else goto <D.4686>;
+  <D.4686>:;
+  i++ ;
+  <D.4688>:;
+  if (i <= 1399) goto <D.4687>; else goto <D.4689>;
+  <D.4689>:;
+}
+
+
+;; Function print_array (null)
+;; enabled by -tree-original
+
+
+{
+  int i;
+  int j;
+
+    int i;
+    int j;
+  fprintf (stderr, (const char * restrict) "==BEGIN DUMP_ARRAYS==\n");
+  fprintf (stderr, (const char * restrict) "begin dump: %s", (char *) "corr");
+  i = 0;
+  goto <D.4700>;
+  <D.4699>:;
+  j = 0;
+  goto <D.4697>;
+  <D.4696>:;
+  if ((i * m + j) % 20 == 0)
+    {
+      fprintf (stderr, (const char * restrict) "\n");
+    }
+  fprintf (stderr, (const char * restrict) "%0.2lf ", (*(corr + (sizetype) ((long unsigned int) i * 9600)))[j]);
+  j++ ;
+  <D.4697>:;
+  if (j < m) goto <D.4696>; else goto <D.4698>;
+  <D.4698>:;
+  i++ ;
+  <D.4700>:;
+  if (i < m) goto <D.4699>; else goto <D.4701>;
+  <D.4701>:;
+  fprintf (stderr, (const char * restrict) "\nend   dump: %s\n", (char *) "corr");
+  fprintf (stderr, (const char * restrict) "==END   DUMP_ARRAYS==\n");
+}
+
+
+;; Function kernel_correlation (null)
+;; enabled by -tree-original
+
+
+{
+  int i;
+  int j;
+  int k;
+  double eps = 1.000000000000000055511151231257827021181583404541015625e-1;
+
+    int i;
+    int j;
+    int k;
+    double eps = 1.000000000000000055511151231257827021181583404541015625e-1;
+  j = 0;
+  goto <D.4719>;
+  <D.4718>:;
+  *(mean + (sizetype) ((long unsigned int) j * 8)) = 0.0;
+  i = 0;
+  goto <D.4716>;
+  <D.4715>:;
+  *(mean + (sizetype) ((long unsigned int) j * 8)) = *(mean + (sizetype) ((long unsigned int) j * 8)) + (*(data + (sizetype) ((long unsigned int) i * 9600)))[j];
+  i++ ;
+  <D.4716>:;
+  if (i < n) goto <D.4715>; else goto <D.4717>;
+  <D.4717>:;
+  *(mean + (sizetype) ((long unsigned int) j * 8)) = *(mean + (sizetype) ((long unsigned int) j * 8)) / float_n;
+  j++ ;
+  <D.4719>:;
+  if (j < m) goto <D.4718>; else goto <D.4720>;
+  <D.4720>:;
+  j = 0;
+  goto <D.4725>;
+  <D.4724>:;
+  *(stddev + (sizetype) ((long unsigned int) j * 8)) = 0.0;
+  i = 0;
+  goto <D.4722>;
+  <D.4721>:;
+  *(stddev + (sizetype) ((long unsigned int) j * 8)) = *(stddev + (sizetype) ((long unsigned int) j * 8)) + ((*(data + (sizetype) ((long unsigned int) i * 9600)))[j] - *(mean + (sizetype) ((long unsigned int) j * 8))) * ((*(data + (sizetype) ((long unsigned int) i * 9600)))[j] - *(mean + (sizetype) ((long unsigned int) j * 8)));
+  i++ ;
+  <D.4722>:;
+  if (i < n) goto <D.4721>; else goto <D.4723>;
+  <D.4723>:;
+  *(stddev + (sizetype) ((long unsigned int) j * 8)) = *(stddev + (sizetype) ((long unsigned int) j * 8)) / float_n;
+  *(stddev + (sizetype) ((long unsigned int) j * 8)) = sqrt (*(stddev + (sizetype) ((long unsigned int) j * 8)));
+  *(stddev + (sizetype) ((long unsigned int) j * 8)) = *(stddev + (sizetype) ((long unsigned int) j * 8)) <= eps ? 1.0e+0 : *(stddev + (sizetype) ((long unsigned int) j * 8));
+  j++ ;
+  <D.4725>:;
+  if (j < m) goto <D.4724>; else goto <D.4726>;
+  <D.4726>:;
+  i = 0;
+  goto <D.4731>;
+  <D.4730>:;
+  j = 0;
+  goto <D.4728>;
+  <D.4727>:;
+  (*(data + (sizetype) ((long unsigned int) i * 9600)))[j] = (*(data + (sizetype) ((long unsigned int) i * 9600)))[j] - *(mean + (sizetype) ((long unsigned int) j * 8));
+  SAVE_EXPR <sqrt (float_n) * *(stddev + (sizetype) ((long unsigned int) j * 8))>;, (*(data + (sizetype) ((long unsigned int) i * 9600)))[j] = (*(data + (sizetype) ((long unsigned int) i * 9600)))[j] / (SAVE_EXPR <sqrt (float_n) * *(stddev + (sizetype) ((long unsigned int) j * 8))>);;
+  j++ ;
+  <D.4728>:;
+  if (j < m) goto <D.4727>; else goto <D.4729>;
+  <D.4729>:;
+  i++ ;
+  <D.4731>:;
+  if (i < n) goto <D.4730>; else goto <D.4732>;
+  <D.4732>:;
+  i = 0;
+  goto <D.4740>;
+  <D.4739>:;
+  (*(corr + (sizetype) ((long unsigned int) i * 9600)))[i] = 1.0e+0;
+  j = i + 1;
+  goto <D.4737>;
+  <D.4736>:;
+  (*(corr + (sizetype) ((long unsigned int) i * 9600)))[j] = 0.0;
+  k = 0;
+  goto <D.4734>;
+  <D.4733>:;
+  (*(corr + (sizetype) ((long unsigned int) i * 9600)))[j] = (*(corr + (sizetype) ((long unsigned int) i * 9600)))[j] + (*(data + (sizetype) ((long unsigned int) k * 9600)))[i] * (*(data + (sizetype) ((long unsigned int) k * 9600)))[j];
+  k++ ;
+  <D.4734>:;
+  if (k < n) goto <D.4733>; else goto <D.4735>;
+  <D.4735>:;
+  (*(corr + (sizetype) ((long unsigned int) j * 9600)))[i] = (*(corr + (sizetype) ((long unsigned int) i * 9600)))[j];
+  j++ ;
+  <D.4737>:;
+  if (j < m) goto <D.4736>; else goto <D.4738>;
+  <D.4738>:;
+  i++ ;
+  <D.4740>:;
+  if (m + -1 > i) goto <D.4739>; else goto <D.4741>;
+  <D.4741>:;
+  (*(corr + ((sizetype) ((long unsigned int) m * 9600) + 18446744073709542016)))[m + -1] = 1.0e+0;
+}
+
+
+;; Function main (null)
+;; enabled by -tree-original
+
+
+{
+  int n = 1400;
+  int m = 1200;
+  double float_n;
+  double[1400][1200] * data;
+  double[1200][1200] * corr;
+  double[1200] * mean;
+  double[1200] * stddev;
+
+    int n = 1400;
+    int m = 1200;
+    double float_n;
+    double[1400][1200] * data;
+  data = (double[1400][1200] *) polybench_alloc_data (1680000, 8);
+    double[1200][1200] * corr;
+  corr = (double[1200][1200] *) polybench_alloc_data (1440000, 8);
+    double[1200] * mean;
+  mean = (double[1200] *) polybench_alloc_data (1200, 8);
+    double[1200] * stddev;
+  stddev = (double[1200] *) polybench_alloc_data (1200, 8);
+  init_array (m, n, &float_n, (double[1200] *) data);
+  kernel_correlation (m, n, float_n, (double[1200] *) data, (double[1200] *) corr, (double *) mean, (double *) stddev);
+  if (argc > 42 && strcmp ((const char *) *argv, (const char *) "") == 0)
+    {
+      print_array (m, (double[1200] *) corr);
+    }
+  free ((void *) data);
+  free ((void *) corr);
+  free ((void *) mean);
+  free ((void *) stddev);
+  return 0;
+}
+return 0;
+

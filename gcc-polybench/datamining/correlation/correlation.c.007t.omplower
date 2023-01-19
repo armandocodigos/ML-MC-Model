@@ -1,0 +1,377 @@
+
+;; Function init_array (init_array, funcdef_no=6, decl_uid=4680, cgraph_uid=7, symbol_order=6)
+
+init_array (int m, int n, double * float_n, double[1200] * data)
+{
+  int i;
+  int j;
+
+  *float_n = 1.4e+3;
+  i = 0;
+  goto <D.4688>;
+  <D.4687>:
+  j = 0;
+  goto <D.4685>;
+  <D.4684>:
+  _1 = i * j;
+  _2 = (double) _1;
+  _3 = _2 / 1.2e+3;
+  _4 = (double) i;
+  _5 = (long unsigned int) i;
+  _6 = _5 * 9600;
+  _7 = data + _6;
+  _8 = _3 + _4;
+  *_7[j] = _8;
+  j = j + 1;
+  <D.4685>:
+  if (j <= 1199) goto <D.4684>; else goto <D.4686>;
+  <D.4686>:
+  i = i + 1;
+  <D.4688>:
+  if (i <= 1399) goto <D.4687>; else goto <D.4689>;
+  <D.4689>:
+}
+
+
+
+;; Function print_array (print_array, funcdef_no=7, decl_uid=4692, cgraph_uid=8, symbol_order=7)
+
+print_array (int m, double[1200] * corr)
+{
+  int i;
+  int j;
+
+  stderr.0_1 = stderr;
+  fprintf (stderr.0_1, "==BEGIN DUMP_ARRAYS==\n");
+  stderr.1_2 = stderr;
+  fprintf (stderr.1_2, "begin dump: %s", "corr");
+  i = 0;
+  goto <D.4700>;
+  <D.4699>:
+  j = 0;
+  goto <D.4697>;
+  <D.4696>:
+  _3 = i * m;
+  _4 = j + _3;
+  _5 = _4 % 20;
+  if (_5 == 0) goto <D.4754>; else goto <D.4755>;
+  <D.4754>:
+  stderr.2_6 = stderr;
+  fprintf (stderr.2_6, "\n");
+  <D.4755>:
+  _7 = (long unsigned int) i;
+  _8 = _7 * 9600;
+  _9 = corr + _8;
+  _10 = *_9[j];
+  stderr.3_11 = stderr;
+  fprintf (stderr.3_11, "%0.2lf ", _10);
+  j = j + 1;
+  <D.4697>:
+  if (j < m) goto <D.4696>; else goto <D.4698>;
+  <D.4698>:
+  i = i + 1;
+  <D.4700>:
+  if (i < m) goto <D.4699>; else goto <D.4701>;
+  <D.4701>:
+  stderr.4_12 = stderr;
+  fprintf (stderr.4_12, "\nend   dump: %s\n", "corr");
+  stderr.5_13 = stderr;
+  fprintf (stderr.5_13, "==END   DUMP_ARRAYS==\n");
+}
+
+
+
+;; Function kernel_correlation (kernel_correlation, funcdef_no=8, decl_uid=4709, cgraph_uid=9, symbol_order=8)
+
+kernel_correlation (int m, int n, double float_n, double[1200] * data, double[1200] * corr, double * mean, double * stddev)
+{
+  double iftmp.6;
+  double D.4760;
+  int i;
+  int j;
+  int k;
+  double eps;
+
+  eps = 1.000000000000000055511151231257827021181583404541015625e-1;
+  j = 0;
+  goto <D.4719>;
+  <D.4718>:
+  _1 = (long unsigned int) j;
+  _2 = _1 * 8;
+  _3 = mean + _2;
+  *_3 = 0.0;
+  i = 0;
+  goto <D.4716>;
+  <D.4715>:
+  _4 = (long unsigned int) j;
+  _5 = _4 * 8;
+  _6 = mean + _5;
+  _7 = *_6;
+  _8 = (long unsigned int) i;
+  _9 = _8 * 9600;
+  _10 = data + _9;
+  _11 = *_10[j];
+  _12 = (long unsigned int) j;
+  _13 = _12 * 8;
+  _14 = mean + _13;
+  _15 = _7 + _11;
+  *_14 = _15;
+  i = i + 1;
+  <D.4716>:
+  if (i < n) goto <D.4715>; else goto <D.4717>;
+  <D.4717>:
+  _16 = (long unsigned int) j;
+  _17 = _16 * 8;
+  _18 = mean + _17;
+  _19 = *_18;
+  _20 = (long unsigned int) j;
+  _21 = _20 * 8;
+  _22 = mean + _21;
+  _23 = _19 / float_n;
+  *_22 = _23;
+  j = j + 1;
+  <D.4719>:
+  if (j < m) goto <D.4718>; else goto <D.4720>;
+  <D.4720>:
+  j = 0;
+  goto <D.4725>;
+  <D.4724>:
+  _24 = (long unsigned int) j;
+  _25 = _24 * 8;
+  _26 = stddev + _25;
+  *_26 = 0.0;
+  i = 0;
+  goto <D.4722>;
+  <D.4721>:
+  _27 = (long unsigned int) j;
+  _28 = _27 * 8;
+  _29 = stddev + _28;
+  _30 = *_29;
+  _31 = (long unsigned int) i;
+  _32 = _31 * 9600;
+  _33 = data + _32;
+  _34 = *_33[j];
+  _35 = (long unsigned int) j;
+  _36 = _35 * 8;
+  _37 = mean + _36;
+  _38 = *_37;
+  _39 = _34 - _38;
+  _40 = (long unsigned int) i;
+  _41 = _40 * 9600;
+  _42 = data + _41;
+  _43 = *_42[j];
+  _44 = (long unsigned int) j;
+  _45 = _44 * 8;
+  _46 = mean + _45;
+  _47 = *_46;
+  _48 = _43 - _47;
+  _49 = _39 * _48;
+  _50 = (long unsigned int) j;
+  _51 = _50 * 8;
+  _52 = stddev + _51;
+  _53 = _30 + _49;
+  *_52 = _53;
+  i = i + 1;
+  <D.4722>:
+  if (i < n) goto <D.4721>; else goto <D.4723>;
+  <D.4723>:
+  _54 = (long unsigned int) j;
+  _55 = _54 * 8;
+  _56 = stddev + _55;
+  _57 = *_56;
+  _58 = (long unsigned int) j;
+  _59 = _58 * 8;
+  _60 = stddev + _59;
+  _61 = _57 / float_n;
+  *_60 = _61;
+  _62 = (long unsigned int) j;
+  _63 = _62 * 8;
+  _64 = stddev + _63;
+  _65 = *_64;
+  _66 = (long unsigned int) j;
+  _67 = _66 * 8;
+  _68 = stddev + _67;
+  _69 = sqrt (_65);
+  *_68 = _69;
+  _70 = (long unsigned int) j;
+  _71 = _70 * 8;
+  _72 = stddev + _71;
+  _73 = *_72;
+  if (eps >= _73) goto <D.4757>; else goto <D.4758>;
+  <D.4757>:
+  iftmp.6 = 1.0e+0;
+  goto <D.4759>;
+  <D.4758>:
+  _74 = (long unsigned int) j;
+  _75 = _74 * 8;
+  _76 = stddev + _75;
+  iftmp.6 = *_76;
+  <D.4759>:
+  _77 = (long unsigned int) j;
+  _78 = _77 * 8;
+  _79 = stddev + _78;
+  *_79 = iftmp.6;
+  j = j + 1;
+  <D.4725>:
+  if (j < m) goto <D.4724>; else goto <D.4726>;
+  <D.4726>:
+  i = 0;
+  goto <D.4731>;
+  <D.4730>:
+  j = 0;
+  goto <D.4728>;
+  <D.4727>:
+  _80 = (long unsigned int) i;
+  _81 = _80 * 9600;
+  _82 = data + _81;
+  _83 = *_82[j];
+  _84 = (long unsigned int) j;
+  _85 = _84 * 8;
+  _86 = mean + _85;
+  _87 = *_86;
+  _88 = (long unsigned int) i;
+  _89 = _88 * 9600;
+  _90 = data + _89;
+  _91 = _83 - _87;
+  *_90[j] = _91;
+  _92 = sqrt (float_n);
+  _93 = (long unsigned int) j;
+  _94 = _93 * 8;
+  _95 = stddev + _94;
+  _96 = *_95;
+  D.4760 = _92 * _96;
+  _97 = (long unsigned int) i;
+  _98 = _97 * 9600;
+  _99 = data + _98;
+  _100 = *_99[j];
+  _101 = (long unsigned int) i;
+  _102 = _101 * 9600;
+  _103 = data + _102;
+  _104 = _100 / D.4760;
+  *_103[j] = _104;
+  j = j + 1;
+  <D.4728>:
+  if (j < m) goto <D.4727>; else goto <D.4729>;
+  <D.4729>:
+  i = i + 1;
+  <D.4731>:
+  if (i < n) goto <D.4730>; else goto <D.4732>;
+  <D.4732>:
+  i = 0;
+  goto <D.4740>;
+  <D.4739>:
+  _105 = (long unsigned int) i;
+  _106 = _105 * 9600;
+  _107 = corr + _106;
+  *_107[i] = 1.0e+0;
+  j = i + 1;
+  goto <D.4737>;
+  <D.4736>:
+  _108 = (long unsigned int) i;
+  _109 = _108 * 9600;
+  _110 = corr + _109;
+  *_110[j] = 0.0;
+  k = 0;
+  goto <D.4734>;
+  <D.4733>:
+  _111 = (long unsigned int) i;
+  _112 = _111 * 9600;
+  _113 = corr + _112;
+  _114 = *_113[j];
+  _115 = (long unsigned int) k;
+  _116 = _115 * 9600;
+  _117 = data + _116;
+  _118 = *_117[i];
+  _119 = (long unsigned int) k;
+  _120 = _119 * 9600;
+  _121 = data + _120;
+  _122 = *_121[j];
+  _123 = _118 * _122;
+  _124 = (long unsigned int) i;
+  _125 = _124 * 9600;
+  _126 = corr + _125;
+  _127 = _114 + _123;
+  *_126[j] = _127;
+  k = k + 1;
+  <D.4734>:
+  if (k < n) goto <D.4733>; else goto <D.4735>;
+  <D.4735>:
+  _128 = (long unsigned int) i;
+  _129 = _128 * 9600;
+  _130 = corr + _129;
+  _131 = (long unsigned int) j;
+  _132 = _131 * 9600;
+  _133 = corr + _132;
+  _134 = *_130[j];
+  *_133[i] = _134;
+  j = j + 1;
+  <D.4737>:
+  if (j < m) goto <D.4736>; else goto <D.4738>;
+  <D.4738>:
+  i = i + 1;
+  <D.4740>:
+  _135 = m + -1;
+  if (i < _135) goto <D.4739>; else goto <D.4741>;
+  <D.4741>:
+  _136 = (long unsigned int) m;
+  _137 = _136 * 9600;
+  _138 = _137 + 18446744073709542016;
+  _139 = corr + _138;
+  _140 = m + -1;
+  *_139[_140] = 1.0e+0;
+}
+
+
+
+;; Function main (main, funcdef_no=9, decl_uid=4744, cgraph_uid=10, symbol_order=9)
+
+main (int argc, char * * argv)
+{
+  int D.4765;
+
+  {
+    int n;
+    int m;
+    double float_n;
+    double[1400][1200] * data;
+    double[1200][1200] * corr;
+    double[1200] * mean;
+    double[1200] * stddev;
+
+    try
+      {
+        n = 1400;
+        m = 1200;
+        data = polybench_alloc_data (1680000, 8);
+        corr = polybench_alloc_data (1440000, 8);
+        mean = polybench_alloc_data (1200, 8);
+        stddev = polybench_alloc_data (1200, 8);
+        init_array (m, n, &float_n, data);
+        float_n.7_1 = float_n;
+        kernel_correlation (m, n, float_n.7_1, data, corr, mean, stddev);
+        if (argc > 42) goto <D.4761>; else goto <D.4762>;
+        <D.4761>:
+        _2 = *argv;
+        _3 = strcmp (_2, "");
+        if (_3 == 0) goto <D.4763>; else goto <D.4764>;
+        <D.4763>:
+        print_array (m, corr);
+        <D.4764>:
+        <D.4762>:
+        free (data);
+        free (corr);
+        free (mean);
+        free (stddev);
+        D.4765 = 0;
+        return D.4765;
+      }
+    finally
+      {
+        float_n = {CLOBBER};
+      }
+  }
+  D.4765 = 0;
+  return D.4765;
+}
+
+

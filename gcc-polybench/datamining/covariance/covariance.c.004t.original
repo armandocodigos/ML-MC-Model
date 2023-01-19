@@ -1,0 +1,226 @@
+
+;; Function __bswap_16 (null)
+;; enabled by -tree-original
+
+
+{
+  return (__uint16_t) __builtin_bswap16 ((int) __bsx);
+}
+
+
+;; Function __bswap_32 (null)
+;; enabled by -tree-original
+
+
+{
+  return (__uint32_t) __builtin_bswap32 (__bsx);
+}
+
+
+;; Function __bswap_64 (null)
+;; enabled by -tree-original
+
+
+{
+  return (__uint64_t) __builtin_bswap64 (__bsx);
+}
+
+
+;; Function __uint16_identity (null)
+;; enabled by -tree-original
+
+
+{
+  return __x;
+}
+
+
+;; Function __uint32_identity (null)
+;; enabled by -tree-original
+
+
+{
+  return __x;
+}
+
+
+;; Function __uint64_identity (null)
+;; enabled by -tree-original
+
+
+{
+  return __x;
+}
+
+
+;; Function init_array (null)
+;; enabled by -tree-original
+
+
+{
+  int i;
+  int j;
+
+    int i;
+    int j;
+  *float_n = (double) n;
+  i = 0;
+  goto <D.4688>;
+  <D.4687>:;
+  j = 0;
+  goto <D.4685>;
+  <D.4684>:;
+  (*(data + (sizetype) ((long unsigned int) i * 9600)))[j] = ((double) i * (double) j) / 1.2e+3;
+  j++ ;
+  <D.4685>:;
+  if (j <= 1199) goto <D.4684>; else goto <D.4686>;
+  <D.4686>:;
+  i++ ;
+  <D.4688>:;
+  if (i <= 1399) goto <D.4687>; else goto <D.4689>;
+  <D.4689>:;
+}
+
+
+;; Function print_array (null)
+;; enabled by -tree-original
+
+
+{
+  int i;
+  int j;
+
+    int i;
+    int j;
+  fprintf (stderr, (const char * restrict) "==BEGIN DUMP_ARRAYS==\n");
+  fprintf (stderr, (const char * restrict) "begin dump: %s", (char *) "cov");
+  i = 0;
+  goto <D.4700>;
+  <D.4699>:;
+  j = 0;
+  goto <D.4697>;
+  <D.4696>:;
+  if ((i * m + j) % 20 == 0)
+    {
+      fprintf (stderr, (const char * restrict) "\n");
+    }
+  fprintf (stderr, (const char * restrict) "%0.2lf ", (*(cov + (sizetype) ((long unsigned int) i * 9600)))[j]);
+  j++ ;
+  <D.4697>:;
+  if (j < m) goto <D.4696>; else goto <D.4698>;
+  <D.4698>:;
+  i++ ;
+  <D.4700>:;
+  if (i < m) goto <D.4699>; else goto <D.4701>;
+  <D.4701>:;
+  fprintf (stderr, (const char * restrict) "\nend   dump: %s\n", (char *) "cov");
+  fprintf (stderr, (const char * restrict) "==END   DUMP_ARRAYS==\n");
+}
+
+
+;; Function kernel_covariance (null)
+;; enabled by -tree-original
+
+
+{
+  int i;
+  int j;
+  int k;
+
+    int i;
+    int j;
+    int k;
+  j = 0;
+  goto <D.4717>;
+  <D.4716>:;
+  *(mean + (sizetype) ((long unsigned int) j * 8)) = 0.0;
+  i = 0;
+  goto <D.4714>;
+  <D.4713>:;
+  *(mean + (sizetype) ((long unsigned int) j * 8)) = *(mean + (sizetype) ((long unsigned int) j * 8)) + (*(data + (sizetype) ((long unsigned int) i * 9600)))[j];
+  i++ ;
+  <D.4714>:;
+  if (i < n) goto <D.4713>; else goto <D.4715>;
+  <D.4715>:;
+  *(mean + (sizetype) ((long unsigned int) j * 8)) = *(mean + (sizetype) ((long unsigned int) j * 8)) / float_n;
+  j++ ;
+  <D.4717>:;
+  if (j < m) goto <D.4716>; else goto <D.4718>;
+  <D.4718>:;
+  i = 0;
+  goto <D.4723>;
+  <D.4722>:;
+  j = 0;
+  goto <D.4720>;
+  <D.4719>:;
+  (*(data + (sizetype) ((long unsigned int) i * 9600)))[j] = (*(data + (sizetype) ((long unsigned int) i * 9600)))[j] - *(mean + (sizetype) ((long unsigned int) j * 8));
+  j++ ;
+  <D.4720>:;
+  if (j < m) goto <D.4719>; else goto <D.4721>;
+  <D.4721>:;
+  i++ ;
+  <D.4723>:;
+  if (i < n) goto <D.4722>; else goto <D.4724>;
+  <D.4724>:;
+  i = 0;
+  goto <D.4732>;
+  <D.4731>:;
+  j = i;
+  goto <D.4729>;
+  <D.4728>:;
+  (*(cov + (sizetype) ((long unsigned int) i * 9600)))[j] = 0.0;
+  k = 0;
+  goto <D.4726>;
+  <D.4725>:;
+  (*(cov + (sizetype) ((long unsigned int) i * 9600)))[j] = (*(cov + (sizetype) ((long unsigned int) i * 9600)))[j] + (*(data + (sizetype) ((long unsigned int) k * 9600)))[i] * (*(data + (sizetype) ((long unsigned int) k * 9600)))[j];
+  k++ ;
+  <D.4726>:;
+  if (k < n) goto <D.4725>; else goto <D.4727>;
+  <D.4727>:;
+  (*(cov + (sizetype) ((long unsigned int) i * 9600)))[j] = (*(cov + (sizetype) ((long unsigned int) i * 9600)))[j] / (float_n - 1.0e+0);
+  (*(cov + (sizetype) ((long unsigned int) j * 9600)))[i] = (*(cov + (sizetype) ((long unsigned int) i * 9600)))[j];
+  j++ ;
+  <D.4729>:;
+  if (j < m) goto <D.4728>; else goto <D.4730>;
+  <D.4730>:;
+  i++ ;
+  <D.4732>:;
+  if (i < m) goto <D.4731>; else goto <D.4733>;
+  <D.4733>:;
+}
+
+
+;; Function main (null)
+;; enabled by -tree-original
+
+
+{
+  int n = 1400;
+  int m = 1200;
+  double float_n;
+  double[1400][1200] * data;
+  double[1200][1200] * cov;
+  double[1200] * mean;
+
+    int n = 1400;
+    int m = 1200;
+    double float_n;
+    double[1400][1200] * data;
+  data = (double[1400][1200] *) polybench_alloc_data (1680000, 8);
+    double[1200][1200] * cov;
+  cov = (double[1200][1200] *) polybench_alloc_data (1440000, 8);
+    double[1200] * mean;
+  mean = (double[1200] *) polybench_alloc_data (1200, 8);
+  init_array (m, n, &float_n, (double[1200] *) data);
+  kernel_covariance (m, n, float_n, (double[1200] *) data, (double[1200] *) cov, (double *) mean);
+  if (argc > 42 && strcmp ((const char *) *argv, (const char *) "") == 0)
+    {
+      print_array (m, (double[1200] *) cov);
+    }
+  free ((void *) data);
+  free ((void *) cov);
+  free ((void *) mean);
+  return 0;
+}
+return 0;
+

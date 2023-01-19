@@ -1,0 +1,380 @@
+
+;; Function init_array (init_array, funcdef_no=6, decl_uid=4680, cgraph_uid=7, symbol_order=6)
+
+init_array (int m, int n, double * float_n, double[1200] * data)
+{
+  int j;
+  int i;
+
+  <bb 2> :
+  _1 = (double) n;
+  *float_n = _1;
+  i = 0;
+  goto <bb 7>; [INV]
+
+  <bb 3> :
+  j = 0;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  _2 = (double) i;
+  _3 = (double) j;
+  _4 = _2 * _3;
+  _5 = (long unsigned int) i;
+  _6 = _5 * 9600;
+  _7 = data + _6;
+  _8 = _4 / 1.2e+3;
+  *_7[j] = _8;
+  j = j + 1;
+
+  <bb 5> :
+  if (j <= 1199)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  i = i + 1;
+
+  <bb 7> :
+  if (i <= 1399)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  return;
+
+}
+
+
+
+;; Function print_array (print_array, funcdef_no=7, decl_uid=4692, cgraph_uid=8, symbol_order=7)
+
+covariance.c:50: fprintf: objsize = 9223372036854775807, fmtstr = "begin dump: %s"
+  Directive 1 at offset 0: "begin dump: ", length = 12
+    Result: 12, 12, 12, 12 (12, 12, 12, 12)
+  Directive 2 at offset 12: "%s"
+    Result: 3, 3, 3, 3 (15, 15, 15, 15)
+  Directive 3 at offset 14: "", length = 1
+covariance.c:56: fprintf: objsize = 9223372036854775807, fmtstr = "
+end   dump: %s
+"
+  Directive 1 at offset 0: "
+end   dump: ", length = 13
+    Result: 13, 13, 13, 13 (13, 13, 13, 13)
+  Directive 2 at offset 13: "%s"
+    Result: 3, 3, 3, 3 (16, 16, 16, 16)
+  Directive 3 at offset 15: "
+", length = 1
+    Result: 1, 1, 1, 1 (17, 17, 17, 17)
+  Directive 4 at offset 16: "", length = 1
+covariance.c:54: fprintf: objsize = 9223372036854775807, fmtstr = "%0.2lf "
+  Directive 1 at offset 0: "%0.2lf"
+    Result: 3, 4, 313, 318 (3, 4, 313, 318)
+  Directive 2 at offset 6: " ", length = 1
+    Result: 1, 1, 1, 1 (4, 5, 314, 319)
+  Directive 3 at offset 7: "", length = 1
+print_array (int m, double[1200] * cov)
+{
+  int j;
+  int i;
+
+  <bb 2> :
+  stderr.0_1 = stderr;
+  __builtin_fwrite ("==BEGIN DUMP_ARRAYS==\n", 1, 22, stderr.0_1);
+  stderr.1_2 = stderr;
+  fprintf (stderr.1_2, "begin dump: %s", "cov");
+  i = 0;
+  goto <bb 9>; [INV]
+
+  <bb 3> :
+  j = 0;
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  _3 = i * m;
+  _4 = j + _3;
+  _5 = _4 % 20;
+  if (_5 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  stderr.2_6 = stderr;
+  __builtin_fputc (10, stderr.2_6);
+
+  <bb 6> :
+  _7 = (long unsigned int) i;
+  _8 = _7 * 9600;
+  _9 = cov + _8;
+  _10 = *_9[j];
+  stderr.3_11 = stderr;
+  fprintf (stderr.3_11, "%0.2lf ", _10);
+  j = j + 1;
+
+  <bb 7> :
+  if (j < m)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  i = i + 1;
+
+  <bb 9> :
+  if (i < m)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  stderr.4_12 = stderr;
+  fprintf (stderr.4_12, "\nend   dump: %s\n", "cov");
+  stderr.5_13 = stderr;
+  __builtin_fwrite ("==END   DUMP_ARRAYS==\n", 1, 22, stderr.5_13);
+  return;
+
+}
+
+
+
+;; Function kernel_covariance (kernel_covariance, funcdef_no=8, decl_uid=4708, cgraph_uid=9, symbol_order=8)
+
+kernel_covariance (int m, int n, double float_n, double[1200] * data, double[1200] * cov, double * mean)
+{
+  int k;
+  int j;
+  int i;
+
+  <bb 2> :
+  j = 0;
+  goto <bb 7>; [INV]
+
+  <bb 3> :
+  _1 = (long unsigned int) j;
+  _2 = _1 * 8;
+  _3 = mean + _2;
+  *_3 = 0.0;
+  i = 0;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  _4 = (long unsigned int) j;
+  _5 = _4 * 8;
+  _6 = mean + _5;
+  _7 = *_6;
+  _8 = (long unsigned int) i;
+  _9 = _8 * 9600;
+  _10 = data + _9;
+  _11 = *_10[j];
+  _12 = (long unsigned int) j;
+  _13 = _12 * 8;
+  _14 = mean + _13;
+  _15 = _7 + _11;
+  *_14 = _15;
+  i = i + 1;
+
+  <bb 5> :
+  if (i < n)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  _16 = (long unsigned int) j;
+  _17 = _16 * 8;
+  _18 = mean + _17;
+  _19 = *_18;
+  _20 = (long unsigned int) j;
+  _21 = _20 * 8;
+  _22 = mean + _21;
+  _23 = _19 / float_n;
+  *_22 = _23;
+  j = j + 1;
+
+  <bb 7> :
+  if (j < m)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  i = 0;
+  goto <bb 13>; [INV]
+
+  <bb 9> :
+  j = 0;
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  _24 = (long unsigned int) i;
+  _25 = _24 * 9600;
+  _26 = data + _25;
+  _27 = *_26[j];
+  _28 = (long unsigned int) j;
+  _29 = _28 * 8;
+  _30 = mean + _29;
+  _31 = *_30;
+  _32 = (long unsigned int) i;
+  _33 = _32 * 9600;
+  _34 = data + _33;
+  _35 = _27 - _31;
+  *_34[j] = _35;
+  j = j + 1;
+
+  <bb 11> :
+  if (j < m)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 12> :
+  i = i + 1;
+
+  <bb 13> :
+  if (i < n)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 14> :
+  i = 0;
+  goto <bb 22>; [INV]
+
+  <bb 15> :
+  j = i;
+  goto <bb 20>; [INV]
+
+  <bb 16> :
+  _36 = (long unsigned int) i;
+  _37 = _36 * 9600;
+  _38 = cov + _37;
+  *_38[j] = 0.0;
+  k = 0;
+  goto <bb 18>; [INV]
+
+  <bb 17> :
+  _39 = (long unsigned int) i;
+  _40 = _39 * 9600;
+  _41 = cov + _40;
+  _42 = *_41[j];
+  _43 = (long unsigned int) k;
+  _44 = _43 * 9600;
+  _45 = data + _44;
+  _46 = *_45[i];
+  _47 = (long unsigned int) k;
+  _48 = _47 * 9600;
+  _49 = data + _48;
+  _50 = *_49[j];
+  _51 = _46 * _50;
+  _52 = (long unsigned int) i;
+  _53 = _52 * 9600;
+  _54 = cov + _53;
+  _55 = _42 + _51;
+  *_54[j] = _55;
+  k = k + 1;
+
+  <bb 18> :
+  if (k < n)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 19> :
+  _56 = (long unsigned int) i;
+  _57 = _56 * 9600;
+  _58 = cov + _57;
+  _59 = *_58[j];
+  _60 = float_n - 1.0e+0;
+  _61 = (long unsigned int) i;
+  _62 = _61 * 9600;
+  _63 = cov + _62;
+  _64 = _59 / _60;
+  *_63[j] = _64;
+  _65 = (long unsigned int) i;
+  _66 = _65 * 9600;
+  _67 = cov + _66;
+  _68 = (long unsigned int) j;
+  _69 = _68 * 9600;
+  _70 = cov + _69;
+  _71 = *_67[j];
+  *_70[i] = _71;
+  j = j + 1;
+
+  <bb 20> :
+  if (j < m)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 21> :
+  i = i + 1;
+
+  <bb 22> :
+  if (i < m)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 23> :
+  return;
+
+}
+
+
+
+;; Function main (main, funcdef_no=9, decl_uid=4736, cgraph_uid=10, symbol_order=9)
+
+main (int argc, char * * argv)
+{
+  const unsigned char D.4752;
+  double[1200] * mean;
+  double[1200][1200] * cov;
+  double[1400][1200] * data;
+  double float_n;
+  int m;
+  int n;
+  int D.4751;
+
+  <bb 2> :
+  n = 1400;
+  m = 1200;
+  data = polybench_alloc_data (1680000, 8);
+  cov = polybench_alloc_data (1440000, 8);
+  mean = polybench_alloc_data (1200, 8);
+  init_array (m, n, &float_n, data);
+  float_n.6_1 = float_n;
+  kernel_covariance (m, n, float_n.6_1, data, cov, mean);
+  if (argc > 42)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _2 = *argv;
+  D.4752 = MEM[(const unsigned char * {ref-all})_2];
+  _3 = (int) D.4752;
+  if (_3 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  print_array (m, cov);
+
+  <bb 5> :
+  free (data);
+  free (cov);
+  free (mean);
+  D.4751 = 0;
+  float_n = {CLOBBER};
+
+  <bb 6> :
+<L5>:
+  return D.4751;
+
+}
+
+

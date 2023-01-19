@@ -1,0 +1,554 @@
+
+;; Function init_array (init_array, funcdef_no=6, decl_uid=4680, cgraph_uid=7, symbol_order=6)
+
+
+Analyzing function body size: init_array
+   fp_expression set
+
+IPA function summary for init_array/6 fp_expression
+  global time:     26.000000
+  self size:       18
+  global size:     0
+  min size:       0
+  self stack:      0
+  global stack:    0
+    size:16.000000, time:26.000000
+    size:2.000000, time:0.000000,  executed if:(not inlined)
+  calls:
+
+init_array (int m, int n, double * float_n, double[1200] * data)
+{
+  int j;
+  int i;
+  double _1;
+  double _2;
+  double _3;
+  double _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  double[1200] * _7;
+  double _8;
+
+  <bb 2> :
+  _1 = (double) n_13(D);
+  *float_n_15(D) = _1;
+  i_17 = 0;
+  goto <bb 7>; [INV]
+
+  <bb 3> :
+  j_18 = 0;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  _2 = (double) i_9;
+  _3 = (double) j_10;
+  _4 = _2 * _3;
+  _5 = (long unsigned int) i_9;
+  _6 = _5 * 9600;
+  _7 = data_20(D) + _6;
+  _8 = _4 / 1.2e+3;
+  *_7[j_10] = _8;
+  j_22 = j_10 + 1;
+
+  <bb 5> :
+  # j_10 = PHI <j_18(3), j_22(4)>
+  if (j_10 <= 1199)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  i_19 = i_9 + 1;
+
+  <bb 7> :
+  # i_9 = PHI <i_17(2), i_19(6)>
+  if (i_9 <= 1399)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  return;
+
+}
+
+
+
+;; Function print_array (print_array, funcdef_no=7, decl_uid=4692, cgraph_uid=8, symbol_order=7)
+
+
+Analyzing function body size: print_array
+   fp_expression set
+
+IPA function summary for print_array/7 fp_expression
+  global time:     101.000000
+  self size:       48
+  global size:     0
+  min size:       0
+  self stack:      0
+  global stack:    0
+    size:21.000000, time:22.000000
+    size:2.000000, time:0.000000,  executed if:(not inlined)
+  calls:
+    __builtin_fwrite/11 function body not available
+      loop depth: 0 freq:1.00 size: 5 time: 14
+    fprintf/12 function body not available
+      loop depth: 0 freq:1.00 size: 4 time: 13
+    fprintf/12 function body not available
+      loop depth: 2 freq:1.00 size: 4 time: 13
+    __builtin_fputc/13 function body not available
+      loop depth: 2 freq:1.00 size: 3 time: 12
+    fprintf/12 function body not available
+      loop depth: 0 freq:1.00 size: 4 time: 13
+    __builtin_fwrite/11 function body not available
+      loop depth: 0 freq:1.00 size: 5 time: 14
+
+print_array (int m, double[1200] * cov)
+{
+  int j;
+  int i;
+  struct FILE * stderr.0_1;
+  struct FILE * stderr.1_2;
+  int _3;
+  int _4;
+  int _5;
+  struct FILE * stderr.2_6;
+  long unsigned int _7;
+  long unsigned int _8;
+  double[1200] * _9;
+  double _10;
+  struct FILE * stderr.3_11;
+  struct FILE * stderr.4_12;
+  struct FILE * stderr.5_13;
+
+  <bb 2> :
+  stderr.0_1 = stderr;
+  __builtin_fwrite ("==BEGIN DUMP_ARRAYS==\n", 1, 22, stderr.0_1);
+  stderr.1_2 = stderr;
+  fprintf (stderr.1_2, "begin dump: %s", "cov");
+  i_22 = 0;
+  goto <bb 9>; [INV]
+
+  <bb 3> :
+  j_26 = 0;
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  _3 = i_14 * m_23(D);
+  _4 = j_15 + _3;
+  _5 = _4 % 20;
+  if (_5 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  stderr.2_6 = stderr;
+  __builtin_fputc (10, stderr.2_6);
+
+  <bb 6> :
+  _7 = (long unsigned int) i_14;
+  _8 = _7 * 9600;
+  _9 = cov_29(D) + _8;
+  _10 = *_9[j_15];
+  stderr.3_11 = stderr;
+  fprintf (stderr.3_11, "%0.2lf ", _10);
+  j_31 = j_15 + 1;
+
+  <bb 7> :
+  # j_15 = PHI <j_26(3), j_31(6)>
+  if (j_15 < m_23(D))
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  i_27 = i_14 + 1;
+
+  <bb 9> :
+  # i_14 = PHI <i_22(2), i_27(8)>
+  if (i_14 < m_23(D))
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  stderr.4_12 = stderr;
+  fprintf (stderr.4_12, "\nend   dump: %s\n", "cov");
+  stderr.5_13 = stderr;
+  __builtin_fwrite ("==END   DUMP_ARRAYS==\n", 1, 22, stderr.5_13);
+  return;
+
+}
+
+
+
+;; Function kernel_covariance (kernel_covariance, funcdef_no=8, decl_uid=4708, cgraph_uid=9, symbol_order=8)
+
+
+Analyzing function body size: kernel_covariance
+   fp_expression set
+
+IPA function summary for kernel_covariance/8 fp_expression
+  global time:     102.000000
+  self size:       85
+  global size:     0
+  min size:       0
+  self stack:      0
+  global stack:    0
+    size:83.000000, time:102.000000
+    size:2.000000, time:0.000000,  executed if:(not inlined)
+  calls:
+
+kernel_covariance (int m, int n, double float_n, double[1200] * data, double[1200] * cov, double * mean)
+{
+  int k;
+  int j;
+  int i;
+  long unsigned int _1;
+  long unsigned int _2;
+  double * _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  double * _6;
+  double _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  double[1200] * _10;
+  double _11;
+  long unsigned int _12;
+  long unsigned int _13;
+  double * _14;
+  double _15;
+  long unsigned int _16;
+  long unsigned int _17;
+  double * _18;
+  double _19;
+  long unsigned int _20;
+  long unsigned int _21;
+  double * _22;
+  double _23;
+  long unsigned int _24;
+  long unsigned int _25;
+  double[1200] * _26;
+  double _27;
+  long unsigned int _28;
+  long unsigned int _29;
+  double * _30;
+  double _31;
+  long unsigned int _32;
+  long unsigned int _33;
+  double[1200] * _34;
+  double _35;
+  long unsigned int _36;
+  long unsigned int _37;
+  double[1200] * _38;
+  long unsigned int _39;
+  long unsigned int _40;
+  double[1200] * _41;
+  double _42;
+  long unsigned int _43;
+  long unsigned int _44;
+  double[1200] * _45;
+  double _46;
+  long unsigned int _47;
+  long unsigned int _48;
+  double[1200] * _49;
+  double _50;
+  double _51;
+  long unsigned int _52;
+  long unsigned int _53;
+  double[1200] * _54;
+  double _55;
+  long unsigned int _56;
+  long unsigned int _57;
+  double[1200] * _58;
+  double _59;
+  double _60;
+  long unsigned int _61;
+  long unsigned int _62;
+  double[1200] * _63;
+  double _64;
+  long unsigned int _65;
+  long unsigned int _66;
+  double[1200] * _67;
+  long unsigned int _68;
+  long unsigned int _69;
+  double[1200] * _70;
+  double _71;
+
+  <bb 2> :
+  j_86 = 0;
+  goto <bb 7>; [INV]
+
+  <bb 3> :
+  _1 = (long unsigned int) j_75;
+  _2 = _1 * 8;
+  _3 = mean_106(D) + _2;
+  *_3 = 0.0;
+  i_110 = 0;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  _4 = (long unsigned int) j_75;
+  _5 = _4 * 8;
+  _6 = mean_106(D) + _5;
+  _7 = *_6;
+  _8 = (long unsigned int) i_72;
+  _9 = _8 * 9600;
+  _10 = data_101(D) + _9;
+  _11 = *_10[j_75];
+  _12 = (long unsigned int) j_75;
+  _13 = _12 * 8;
+  _14 = mean_106(D) + _13;
+  _15 = _7 + _11;
+  *_14 = _15;
+  i_114 = i_72 + 1;
+
+  <bb 5> :
+  # i_72 = PHI <i_110(3), i_114(4)>
+  if (i_72 < n_90(D))
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  _16 = (long unsigned int) j_75;
+  _17 = _16 * 8;
+  _18 = mean_106(D) + _17;
+  _19 = *_18;
+  _20 = (long unsigned int) j_75;
+  _21 = _20 * 8;
+  _22 = mean_106(D) + _21;
+  _23 = _19 / float_n_97(D);
+  *_22 = _23;
+  j_112 = j_75 + 1;
+
+  <bb 7> :
+  # j_75 = PHI <j_86(2), j_112(6)>
+  if (j_75 < m_88(D))
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  i_89 = 0;
+  goto <bb 13>; [INV]
+
+  <bb 9> :
+  j_104 = 0;
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  _24 = (long unsigned int) i_73;
+  _25 = _24 * 9600;
+  _26 = data_101(D) + _25;
+  _27 = *_26[j_76];
+  _28 = (long unsigned int) j_76;
+  _29 = _28 * 8;
+  _30 = mean_106(D) + _29;
+  _31 = *_30;
+  _32 = (long unsigned int) i_73;
+  _33 = _32 * 9600;
+  _34 = data_101(D) + _33;
+  _35 = _27 - _31;
+  *_34[j_76] = _35;
+  j_108 = j_76 + 1;
+
+  <bb 11> :
+  # j_76 = PHI <j_104(9), j_108(10)>
+  if (j_76 < m_88(D))
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 12> :
+  i_105 = i_73 + 1;
+
+  <bb 13> :
+  # i_73 = PHI <i_89(8), i_105(12)>
+  if (i_73 < n_90(D))
+    goto <bb 9>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 14> :
+  i_91 = 0;
+  goto <bb 22>; [INV]
+
+  <bb 15> :
+  j_92 = i_74;
+  goto <bb 20>; [INV]
+
+  <bb 16> :
+  _36 = (long unsigned int) i_74;
+  _37 = _36 * 9600;
+  _38 = cov_94(D) + _37;
+  *_38[j_77] = 0.0;
+  k_96 = 0;
+  goto <bb 18>; [INV]
+
+  <bb 17> :
+  _39 = (long unsigned int) i_74;
+  _40 = _39 * 9600;
+  _41 = cov_94(D) + _40;
+  _42 = *_41[j_77];
+  _43 = (long unsigned int) k_78;
+  _44 = _43 * 9600;
+  _45 = data_101(D) + _44;
+  _46 = *_45[i_74];
+  _47 = (long unsigned int) k_78;
+  _48 = _47 * 9600;
+  _49 = data_101(D) + _48;
+  _50 = *_49[j_77];
+  _51 = _46 * _50;
+  _52 = (long unsigned int) i_74;
+  _53 = _52 * 9600;
+  _54 = cov_94(D) + _53;
+  _55 = _42 + _51;
+  *_54[j_77] = _55;
+  k_103 = k_78 + 1;
+
+  <bb 18> :
+  # k_78 = PHI <k_96(16), k_103(17)>
+  if (k_78 < n_90(D))
+    goto <bb 17>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 19> :
+  _56 = (long unsigned int) i_74;
+  _57 = _56 * 9600;
+  _58 = cov_94(D) + _57;
+  _59 = *_58[j_77];
+  _60 = float_n_97(D) - 1.0e+0;
+  _61 = (long unsigned int) i_74;
+  _62 = _61 * 9600;
+  _63 = cov_94(D) + _62;
+  _64 = _59 / _60;
+  *_63[j_77] = _64;
+  _65 = (long unsigned int) i_74;
+  _66 = _65 * 9600;
+  _67 = cov_94(D) + _66;
+  _68 = (long unsigned int) j_77;
+  _69 = _68 * 9600;
+  _70 = cov_94(D) + _69;
+  _71 = *_67[j_77];
+  *_70[i_74] = _71;
+  j_100 = j_77 + 1;
+
+  <bb 20> :
+  # j_77 = PHI <j_92(15), j_100(19)>
+  if (j_77 < m_88(D))
+    goto <bb 16>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 21> :
+  i_93 = i_74 + 1;
+
+  <bb 22> :
+  # i_74 = PHI <i_91(14), i_93(21)>
+  if (i_74 < m_88(D))
+    goto <bb 15>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 23> :
+  return;
+
+}
+
+
+
+;; Function main (main, funcdef_no=9, decl_uid=4736, cgraph_uid=10, symbol_order=9)
+
+
+Analyzing function body size: main
+   fp_expression set
+
+IPA function summary for main/9 fp_expression
+  global time:     123.000000
+  self size:       43
+  global size:     0
+  min size:       0
+  self stack:      0
+  global stack:    0
+    size:8.000000, time:9.000000
+    size:2.000000, time:0.000000,  executed if:(not inlined)
+  calls:
+    free/15 function body not available
+      loop depth: 0 freq:1.00 size: 2 time: 11
+    free/15 function body not available
+      loop depth: 0 freq:1.00 size: 2 time: 11
+    free/15 function body not available
+      loop depth: 0 freq:1.00 size: 2 time: 11
+    print_array/7 function not considered for inlining
+      loop depth: 0 freq:1.00 size: 3 time: 12callee size:24 stack: 0
+    kernel_covariance/8 function not considered for inlining
+      loop depth: 0 freq:1.00 size: 7 time: 16callee size:42 stack: 0
+    init_array/6 function not considered for inlining
+      loop depth: 0 freq:1.00 size: 5 time: 14callee size: 9 stack: 0
+    polybench_alloc_data/14 function body not available
+      loop depth: 0 freq:1.00 size: 4 time: 13
+    polybench_alloc_data/14 function body not available
+      loop depth: 0 freq:1.00 size: 4 time: 13
+    polybench_alloc_data/14 function body not available
+      loop depth: 0 freq:1.00 size: 4 time: 13
+
+main (int argc, char * * argv)
+{
+  const unsigned char D.4752;
+  double[1200] * mean;
+  double[1200][1200] * cov;
+  double[1400][1200] * data;
+  double float_n;
+  int m;
+  int n;
+  int D.4751;
+  double float_n.6_1;
+  char * _2;
+  int _3;
+  const unsigned char _18;
+  int _23;
+
+  <bb 2> :
+  n_5 = 1400;
+  m_6 = 1200;
+  data_9 = polybench_alloc_data (1680000, 8);
+  cov_11 = polybench_alloc_data (1440000, 8);
+  mean_13 = polybench_alloc_data (1200, 8);
+  init_array (m_6, n_5, &float_n, data_9);
+  float_n.6_1 = float_n;
+  kernel_covariance (m_6, n_5, float_n.6_1, data_9, cov_11, mean_13);
+  if (argc_16(D) > 42)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _2 = *argv_17(D);
+  _18 = MEM[(const unsigned char * {ref-all})_2];
+  _3 = (int) _18;
+  if (_3 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  print_array (m_6, cov_11);
+
+  <bb 5> :
+  free (data_9);
+  free (cov_11);
+  free (mean_13);
+  _23 = 0;
+  float_n ={v} {CLOBBER};
+
+  <bb 6> :
+<L5>:
+  return _23;
+
+}
+
+

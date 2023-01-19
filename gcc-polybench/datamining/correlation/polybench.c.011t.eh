@@ -1,0 +1,163 @@
+
+;; Function rtclock (rtclock, funcdef_no=6, decl_uid=4991, cgraph_uid=7, symbol_order=14)
+
+rtclock ()
+{
+  double D.5027;
+
+  D.5027 = 0.0;
+  goto <D.5028>;
+  <D.5028>:
+  return D.5027;
+}
+
+
+
+;; Function polybench_flush_cache (polybench_flush_cache, funcdef_no=7, decl_uid=4976, cgraph_uid=8, symbol_order=15)
+
+polybench_flush_cache ()
+{
+  static const char __PRETTY_FUNCTION__[22] = "polybench_flush_cache";
+  double tmp;
+  int i;
+  double * flush;
+  int cs;
+
+  cs = 4194560;
+  _1 = (long unsigned int) cs;
+  flush = calloc (_1, 8);
+  tmp = 0.0;
+  i = 0;
+  goto <D.5000>;
+  <D.4999>:
+  _2 = (long unsigned int) i;
+  _3 = _2 * 8;
+  _4 = flush + _3;
+  _5 = *_4;
+  tmp = tmp + _5;
+  i = i + 1;
+  <D.5000>:
+  if (i < cs) goto <D.4999>; else goto <D.5001>;
+  <D.5001>:
+  if (tmp <= 1.0e+1) goto <D.5029>; else goto <D.5030>;
+  <D.5029>:
+  goto <D.5031>;
+  <D.5030>:
+  __assert_fail ("tmp <= 10.0", "polybench.c", 123, &__PRETTY_FUNCTION__);
+  <D.5031>:
+  free (flush);
+  return;
+}
+
+
+
+;; Function polybench_prepare_instruments (polybench_prepare_instruments, funcdef_no=8, decl_uid=4977, cgraph_uid=9, symbol_order=16)
+
+polybench_prepare_instruments ()
+{
+  polybench_flush_cache ();
+  return;
+}
+
+
+
+;; Function polybench_timer_start (polybench_timer_start, funcdef_no=9, decl_uid=5005, cgraph_uid=10, symbol_order=17)
+
+polybench_timer_start ()
+{
+  polybench_prepare_instruments ();
+  _1 = rtclock ();
+  polybench_t_start = _1;
+  return;
+}
+
+
+
+;; Function polybench_timer_stop (polybench_timer_stop, funcdef_no=10, decl_uid=5007, cgraph_uid=11, symbol_order=18)
+
+polybench_timer_stop ()
+{
+  _1 = rtclock ();
+  polybench_t_end = _1;
+  return;
+}
+
+
+
+;; Function polybench_timer_print (polybench_timer_print, funcdef_no=11, decl_uid=5009, cgraph_uid=12, symbol_order=19)
+
+polybench_timer_print ()
+{
+  polybench_t_end.0_1 = polybench_t_end;
+  polybench_t_start.1_2 = polybench_t_start;
+  _3 = polybench_t_end.0_1 - polybench_t_start.1_2;
+  printf ("%0.6f\n", _3);
+  return;
+}
+
+
+
+;; Function xmalloc (xmalloc, funcdef_no=12, decl_uid=5012, cgraph_uid=13, symbol_order=20)
+
+xmalloc (size_t alloc_sz)
+{
+  int err;
+  size_t padded_sz;
+  void * ret;
+  void * D.5035;
+
+  ret = 0B;
+  polybench_inter_array_padding_sz.2_1 = polybench_inter_array_padding_sz;
+  polybench_inter_array_padding_sz = polybench_inter_array_padding_sz.2_1;
+  polybench_inter_array_padding_sz.3_2 = polybench_inter_array_padding_sz;
+  padded_sz = alloc_sz + polybench_inter_array_padding_sz.3_2;
+  err = posix_memalign (&ret, 4096, padded_sz);
+  ret.4_3 = ret;
+  if (ret.4_3 == 0B) goto <D.5032>; else goto <D.5034>;
+  <D.5034>:
+  if (err != 0) goto <D.5032>; else goto <D.5033>;
+  <D.5032>:
+  stderr.5_4 = stderr;
+  __builtin_fwrite ("[PolyBench] posix_memalign: cannot allocate memory", 1, 50, stderr.5_4);
+  exit (1);
+  <D.5033>:
+  D.5035 = ret;
+  goto <D.5037>;
+  <D.5037>:
+  ret = {CLOBBER};
+  goto <D.5036>;
+  <D.5036>:
+  return D.5035;
+}
+
+
+
+;; Function polybench_free_data (polybench_free_data, funcdef_no=13, decl_uid=4975, cgraph_uid=14, symbol_order=21)
+
+polybench_free_data (void * ptr)
+{
+  free (ptr);
+  return;
+}
+
+
+
+;; Function polybench_alloc_data (polybench_alloc_data, funcdef_no=14, decl_uid=4973, cgraph_uid=15, symbol_order=22)
+
+polybench_alloc_data (long long unsigned int n, int elt_size)
+{
+  void * ret;
+  size_t val;
+  void * D.5038;
+
+  val = n;
+  _1 = (long unsigned int) elt_size;
+  val = val * _1;
+  ret = xmalloc (val);
+  D.5038 = ret;
+  goto <D.5039>;
+  <D.5039>:
+  return D.5038;
+}
+
+

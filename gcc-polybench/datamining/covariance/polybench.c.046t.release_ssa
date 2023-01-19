@@ -1,0 +1,232 @@
+
+;; Function rtclock (rtclock, funcdef_no=6, decl_uid=4991, cgraph_uid=7, symbol_order=14)
+
+Released 0 names, 0.00%, removed 0 holes
+rtclock ()
+{
+  double D.5027;
+  double _1;
+
+  <bb 2> :
+  _1 = 0.0;
+
+  <bb 3> :
+<L0>:
+  return _1;
+
+}
+
+
+
+;; Function polybench_flush_cache (polybench_flush_cache, funcdef_no=7, decl_uid=4976, cgraph_uid=8, symbol_order=15)
+
+Released 0 names, 0.00%, removed 0 holes
+polybench_flush_cache ()
+{
+  static const char __PRETTY_FUNCTION__[22] = "polybench_flush_cache";
+  double tmp;
+  int i;
+  double * flush;
+  int cs;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  double * _4;
+  double _5;
+
+  <bb 2> :
+  cs_8 = 4194560;
+  _1 = (long unsigned int) cs_8;
+  flush_11 = calloc (_1, 8);
+  tmp_12 = 0.0;
+  i_13 = 0;
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  _2 = (long unsigned int) i_6;
+  _3 = _2 * 8;
+  _4 = flush_11 + _3;
+  _5 = *_4;
+  tmp_16 = tmp_7 + _5;
+  i_17 = i_6 + 1;
+
+  <bb 4> :
+  # i_6 = PHI <i_13(2), i_17(3)>
+  # tmp_7 = PHI <tmp_12(2), tmp_16(3)>
+  if (i_6 < cs_8)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  if (tmp_7 <= 1.0e+1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  __assert_fail ("tmp <= 10.0", "polybench.c", 123, &__PRETTY_FUNCTION__);
+
+  <bb 7> :
+  free (flush_11);
+  return;
+
+}
+
+
+
+;; Function polybench_prepare_instruments (polybench_prepare_instruments, funcdef_no=8, decl_uid=4977, cgraph_uid=9, symbol_order=16)
+
+Released 0 names, 0.00%, removed 0 holes
+polybench_prepare_instruments ()
+{
+  <bb 2> :
+  polybench_flush_cache ();
+  return;
+
+}
+
+
+
+;; Function polybench_timer_start (polybench_timer_start, funcdef_no=9, decl_uid=5005, cgraph_uid=10, symbol_order=17)
+
+Released 0 names, 0.00%, removed 0 holes
+polybench_timer_start ()
+{
+  double _1;
+
+  <bb 2> :
+  polybench_prepare_instruments ();
+  _1 = rtclock ();
+  polybench_t_start = _1;
+  return;
+
+}
+
+
+
+;; Function polybench_timer_stop (polybench_timer_stop, funcdef_no=10, decl_uid=5007, cgraph_uid=11, symbol_order=18)
+
+Released 0 names, 0.00%, removed 0 holes
+polybench_timer_stop ()
+{
+  double _1;
+
+  <bb 2> :
+  _1 = rtclock ();
+  polybench_t_end = _1;
+  return;
+
+}
+
+
+
+;; Function polybench_timer_print (polybench_timer_print, funcdef_no=11, decl_uid=5009, cgraph_uid=12, symbol_order=19)
+
+Released 0 names, 0.00%, removed 0 holes
+polybench_timer_print ()
+{
+  double polybench_t_end.0_1;
+  double polybench_t_start.1_2;
+  double _3;
+
+  <bb 2> :
+  polybench_t_end.0_1 = polybench_t_end;
+  polybench_t_start.1_2 = polybench_t_start;
+  _3 = polybench_t_end.0_1 - polybench_t_start.1_2;
+  printf ("%0.6f\n", _3);
+  return;
+
+}
+
+
+
+;; Function xmalloc (xmalloc, funcdef_no=12, decl_uid=5012, cgraph_uid=13, symbol_order=20)
+
+Released 0 names, 0.00%, removed 0 holes
+xmalloc (size_t alloc_sz)
+{
+  int err;
+  size_t padded_sz;
+  void * ret;
+  void * D.5035;
+  long unsigned int polybench_inter_array_padding_sz.2_1;
+  long unsigned int polybench_inter_array_padding_sz.3_2;
+  void * ret.4_3;
+  struct FILE * stderr.5_4;
+  void * _12;
+
+  <bb 2> :
+  ret = 0B;
+  polybench_inter_array_padding_sz.2_1 = polybench_inter_array_padding_sz;
+  polybench_inter_array_padding_sz = polybench_inter_array_padding_sz.2_1;
+  polybench_inter_array_padding_sz.3_2 = polybench_inter_array_padding_sz;
+  padded_sz_9 = alloc_sz_8(D) + polybench_inter_array_padding_sz.3_2;
+  err_11 = posix_memalign (&ret, 4096, padded_sz_9);
+  ret.4_3 = ret;
+  if (ret.4_3 == 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  if (err_11 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  stderr.5_4 = stderr;
+  __builtin_fwrite ("[PolyBench] posix_memalign: cannot allocate memory", 1, 50, stderr.5_4);
+  exit (1);
+
+  <bb 5> :
+  _12 = ret;
+  ret ={v} {CLOBBER};
+
+  <bb 6> :
+<L4>:
+  return _12;
+
+}
+
+
+
+;; Function polybench_free_data (polybench_free_data, funcdef_no=13, decl_uid=4975, cgraph_uid=14, symbol_order=21)
+
+Released 0 names, 0.00%, removed 0 holes
+polybench_free_data (void * ptr)
+{
+  <bb 2> :
+  free (ptr_2(D));
+  return;
+
+}
+
+
+
+;; Function polybench_alloc_data (polybench_alloc_data, funcdef_no=14, decl_uid=4973, cgraph_uid=15, symbol_order=22)
+
+Released 0 names, 0.00%, removed 0 holes
+polybench_alloc_data (long long unsigned int n, int elt_size)
+{
+  void * ret;
+  size_t val;
+  void * D.5038;
+  long unsigned int _1;
+  void * _9;
+
+  <bb 2> :
+  val_3 = n_2(D);
+  _1 = (long unsigned int) elt_size_4(D);
+  val_5 = val_3 * _1;
+  ret_8 = xmalloc (val_5);
+  _9 = ret_8;
+
+  <bb 3> :
+<L0>:
+  return _9;
+
+}
+
+

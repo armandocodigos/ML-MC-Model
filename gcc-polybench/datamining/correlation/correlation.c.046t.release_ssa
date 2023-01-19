@@ -1,0 +1,667 @@
+
+;; Function init_array (init_array, funcdef_no=6, decl_uid=4680, cgraph_uid=7, symbol_order=6)
+
+Released 0 names, 0.00%, removed 0 holes
+init_array (int m, int n, double * float_n, double[1200] * data)
+{
+  int j;
+  int i;
+  int _1;
+  double _2;
+  double _3;
+  double _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  double[1200] * _7;
+  double _8;
+
+  <bb 2> :
+  *float_n_14(D) = 1.4e+3;
+  i_16 = 0;
+  goto <bb 7>; [INV]
+
+  <bb 3> :
+  j_17 = 0;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  _1 = i_9 * j_10;
+  _2 = (double) _1;
+  _3 = _2 / 1.2e+3;
+  _4 = (double) i_9;
+  _5 = (long unsigned int) i_9;
+  _6 = _5 * 9600;
+  _7 = data_19(D) + _6;
+  _8 = _3 + _4;
+  *_7[j_10] = _8;
+  j_21 = j_10 + 1;
+
+  <bb 5> :
+  # j_10 = PHI <j_17(3), j_21(4)>
+  if (j_10 <= 1199)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  i_18 = i_9 + 1;
+
+  <bb 7> :
+  # i_9 = PHI <i_16(2), i_18(6)>
+  if (i_9 <= 1399)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  return;
+
+}
+
+
+
+;; Function print_array (print_array, funcdef_no=7, decl_uid=4692, cgraph_uid=8, symbol_order=7)
+
+Released 0 names, 0.00%, removed 0 holes
+print_array (int m, double[1200] * corr)
+{
+  int j;
+  int i;
+  struct FILE * stderr.0_1;
+  struct FILE * stderr.1_2;
+  int _3;
+  int _4;
+  int _5;
+  struct FILE * stderr.2_6;
+  long unsigned int _7;
+  long unsigned int _8;
+  double[1200] * _9;
+  double _10;
+  struct FILE * stderr.3_11;
+  struct FILE * stderr.4_12;
+  struct FILE * stderr.5_13;
+
+  <bb 2> :
+  stderr.0_1 = stderr;
+  __builtin_fwrite ("==BEGIN DUMP_ARRAYS==\n", 1, 22, stderr.0_1);
+  stderr.1_2 = stderr;
+  fprintf (stderr.1_2, "begin dump: %s", "corr");
+  i_22 = 0;
+  goto <bb 9>; [INV]
+
+  <bb 3> :
+  j_26 = 0;
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  _3 = i_14 * m_23(D);
+  _4 = j_15 + _3;
+  _5 = _4 % 20;
+  if (_5 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  stderr.2_6 = stderr;
+  __builtin_fputc (10, stderr.2_6);
+
+  <bb 6> :
+  _7 = (long unsigned int) i_14;
+  _8 = _7 * 9600;
+  _9 = corr_29(D) + _8;
+  _10 = *_9[j_15];
+  stderr.3_11 = stderr;
+  fprintf (stderr.3_11, "%0.2lf ", _10);
+  j_31 = j_15 + 1;
+
+  <bb 7> :
+  # j_15 = PHI <j_26(3), j_31(6)>
+  if (j_15 < m_23(D))
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  i_27 = i_14 + 1;
+
+  <bb 9> :
+  # i_14 = PHI <i_22(2), i_27(8)>
+  if (i_14 < m_23(D))
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  stderr.4_12 = stderr;
+  fprintf (stderr.4_12, "\nend   dump: %s\n", "corr");
+  stderr.5_13 = stderr;
+  __builtin_fwrite ("==END   DUMP_ARRAYS==\n", 1, 22, stderr.5_13);
+  return;
+
+}
+
+
+
+;; Function kernel_correlation (kernel_correlation, funcdef_no=8, decl_uid=4709, cgraph_uid=9, symbol_order=8)
+
+Released 0 names, 0.00%, removed 0 holes
+kernel_correlation (int m, int n, double float_n, double[1200] * data, double[1200] * corr, double * mean, double * stddev)
+{
+  double eps;
+  int k;
+  int j;
+  int i;
+  double D.4760;
+  double iftmp.6;
+  long unsigned int _1;
+  long unsigned int _2;
+  double * _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  double * _6;
+  double _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  double[1200] * _10;
+  double _11;
+  long unsigned int _12;
+  long unsigned int _13;
+  double * _14;
+  double _15;
+  long unsigned int _16;
+  long unsigned int _17;
+  double * _18;
+  double _19;
+  long unsigned int _20;
+  long unsigned int _21;
+  double * _22;
+  double _23;
+  long unsigned int _24;
+  long unsigned int _25;
+  double * _26;
+  long unsigned int _27;
+  long unsigned int _28;
+  double * _29;
+  double _30;
+  long unsigned int _31;
+  long unsigned int _32;
+  double[1200] * _33;
+  double _34;
+  long unsigned int _35;
+  long unsigned int _36;
+  double * _37;
+  double _38;
+  double _39;
+  long unsigned int _40;
+  long unsigned int _41;
+  double[1200] * _42;
+  double _43;
+  long unsigned int _44;
+  long unsigned int _45;
+  double * _46;
+  double _47;
+  double _48;
+  double _49;
+  long unsigned int _50;
+  long unsigned int _51;
+  double * _52;
+  double _53;
+  long unsigned int _54;
+  long unsigned int _55;
+  double * _56;
+  double _57;
+  long unsigned int _58;
+  long unsigned int _59;
+  double * _60;
+  double _61;
+  long unsigned int _62;
+  long unsigned int _63;
+  double * _64;
+  double _65;
+  long unsigned int _66;
+  long unsigned int _67;
+  double * _68;
+  double _69;
+  long unsigned int _70;
+  long unsigned int _71;
+  double * _72;
+  double _73;
+  long unsigned int _74;
+  long unsigned int _75;
+  double * _76;
+  long unsigned int _77;
+  long unsigned int _78;
+  double * _79;
+  long unsigned int _80;
+  long unsigned int _81;
+  double[1200] * _82;
+  double _83;
+  long unsigned int _84;
+  long unsigned int _85;
+  double * _86;
+  double _87;
+  long unsigned int _88;
+  long unsigned int _89;
+  double[1200] * _90;
+  double _91;
+  double _92;
+  long unsigned int _93;
+  long unsigned int _94;
+  double * _95;
+  double _96;
+  long unsigned int _97;
+  long unsigned int _98;
+  double[1200] * _99;
+  double _100;
+  long unsigned int _101;
+  long unsigned int _102;
+  double[1200] * _103;
+  double _104;
+  long unsigned int _105;
+  long unsigned int _106;
+  double[1200] * _107;
+  long unsigned int _108;
+  long unsigned int _109;
+  double[1200] * _110;
+  long unsigned int _111;
+  long unsigned int _112;
+  double[1200] * _113;
+  double _114;
+  long unsigned int _115;
+  long unsigned int _116;
+  double[1200] * _117;
+  double _118;
+  long unsigned int _119;
+  long unsigned int _120;
+  double[1200] * _121;
+  double _122;
+  double _123;
+  long unsigned int _124;
+  long unsigned int _125;
+  double[1200] * _126;
+  double _127;
+  long unsigned int _128;
+  long unsigned int _129;
+  double[1200] * _130;
+  long unsigned int _131;
+  long unsigned int _132;
+  double[1200] * _133;
+  double _134;
+  int _135;
+  long unsigned int _136;
+  long unsigned int _137;
+  sizetype _138;
+  double[1200] * _139;
+  int _140;
+  double iftmp.6_150;
+  double _187;
+  double iftmp.6_195;
+  double iftmp.6_196;
+
+  <bb 2> :
+  eps_160 = 1.000000000000000055511151231257827021181583404541015625e-1;
+  j_161 = 0;
+  goto <bb 7>; [INV]
+
+  <bb 3> :
+  _1 = (long unsigned int) j_145;
+  _2 = _1 * 8;
+  _3 = mean_182(D) + _2;
+  *_3 = 0.0;
+  i_202 = 0;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  _4 = (long unsigned int) j_145;
+  _5 = _4 * 8;
+  _6 = mean_182(D) + _5;
+  _7 = *_6;
+  _8 = (long unsigned int) i_141;
+  _9 = _8 * 9600;
+  _10 = data_177(D) + _9;
+  _11 = *_10[j_145];
+  _12 = (long unsigned int) j_145;
+  _13 = _12 * 8;
+  _14 = mean_182(D) + _13;
+  _15 = _7 + _11;
+  *_14 = _15;
+  i_206 = i_141 + 1;
+
+  <bb 5> :
+  # i_141 = PHI <i_202(3), i_206(4)>
+  if (i_141 < n_166(D))
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  _16 = (long unsigned int) j_145;
+  _17 = _16 * 8;
+  _18 = mean_182(D) + _17;
+  _19 = *_18;
+  _20 = (long unsigned int) j_145;
+  _21 = _20 * 8;
+  _22 = mean_182(D) + _21;
+  _23 = _19 / float_n_184(D);
+  *_22 = _23;
+  j_204 = j_145 + 1;
+
+  <bb 7> :
+  # j_145 = PHI <j_161(2), j_204(6)>
+  if (j_145 < m_163(D))
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  j_164 = 0;
+  goto <bb 16>; [INV]
+
+  <bb 9> :
+  _24 = (long unsigned int) j_146;
+  _25 = _24 * 8;
+  _26 = stddev_186(D) + _25;
+  *_26 = 0.0;
+  i_191 = 0;
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  _27 = (long unsigned int) j_146;
+  _28 = _27 * 8;
+  _29 = stddev_186(D) + _28;
+  _30 = *_29;
+  _31 = (long unsigned int) i_142;
+  _32 = _31 * 9600;
+  _33 = data_177(D) + _32;
+  _34 = *_33[j_146];
+  _35 = (long unsigned int) j_146;
+  _36 = _35 * 8;
+  _37 = mean_182(D) + _36;
+  _38 = *_37;
+  _39 = _34 - _38;
+  _40 = (long unsigned int) i_142;
+  _41 = _40 * 9600;
+  _42 = data_177(D) + _41;
+  _43 = *_42[j_146];
+  _44 = (long unsigned int) j_146;
+  _45 = _44 * 8;
+  _46 = mean_182(D) + _45;
+  _47 = *_46;
+  _48 = _43 - _47;
+  _49 = _39 * _48;
+  _50 = (long unsigned int) j_146;
+  _51 = _50 * 8;
+  _52 = stddev_186(D) + _51;
+  _53 = _30 + _49;
+  *_52 = _53;
+  i_200 = i_142 + 1;
+
+  <bb 11> :
+  # i_142 = PHI <i_191(9), i_200(10)>
+  if (i_142 < n_166(D))
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 12> :
+  _54 = (long unsigned int) j_146;
+  _55 = _54 * 8;
+  _56 = stddev_186(D) + _55;
+  _57 = *_56;
+  _58 = (long unsigned int) j_146;
+  _59 = _58 * 8;
+  _60 = stddev_186(D) + _59;
+  _61 = _57 / float_n_184(D);
+  *_60 = _61;
+  _62 = (long unsigned int) j_146;
+  _63 = _62 * 8;
+  _64 = stddev_186(D) + _63;
+  _65 = *_64;
+  _66 = (long unsigned int) j_146;
+  _67 = _66 * 8;
+  _68 = stddev_186(D) + _67;
+  _69 = sqrt (_65);
+  *_68 = _69;
+  _70 = (long unsigned int) j_146;
+  _71 = _70 * 8;
+  _72 = stddev_186(D) + _71;
+  _73 = *_72;
+  if (eps_160 >= _73)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  iftmp.6_196 = 1.0e+0;
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  _74 = (long unsigned int) j_146;
+  _75 = _74 * 8;
+  _76 = stddev_186(D) + _75;
+  iftmp.6_195 = *_76;
+
+  <bb 15> :
+  # iftmp.6_150 = PHI <iftmp.6_196(13), iftmp.6_195(14)>
+  _77 = (long unsigned int) j_146;
+  _78 = _77 * 8;
+  _79 = stddev_186(D) + _78;
+  *_79 = iftmp.6_150;
+  j_198 = j_146 + 1;
+
+  <bb 16> :
+  # j_146 = PHI <j_164(8), j_198(15)>
+  if (j_146 < m_163(D))
+    goto <bb 9>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 17> :
+  i_165 = 0;
+  goto <bb 22>; [INV]
+
+  <bb 18> :
+  j_180 = 0;
+  goto <bb 20>; [INV]
+
+  <bb 19> :
+  _80 = (long unsigned int) i_143;
+  _81 = _80 * 9600;
+  _82 = data_177(D) + _81;
+  _83 = *_82[j_147];
+  _84 = (long unsigned int) j_147;
+  _85 = _84 * 8;
+  _86 = mean_182(D) + _85;
+  _87 = *_86;
+  _88 = (long unsigned int) i_143;
+  _89 = _88 * 9600;
+  _90 = data_177(D) + _89;
+  _91 = _83 - _87;
+  *_90[j_147] = _91;
+  _92 = sqrt (float_n_184(D));
+  _93 = (long unsigned int) j_147;
+  _94 = _93 * 8;
+  _95 = stddev_186(D) + _94;
+  _96 = *_95;
+  _187 = _92 * _96;
+  _97 = (long unsigned int) i_143;
+  _98 = _97 * 9600;
+  _99 = data_177(D) + _98;
+  _100 = *_99[j_147];
+  _101 = (long unsigned int) i_143;
+  _102 = _101 * 9600;
+  _103 = data_177(D) + _102;
+  _104 = _100 / _187;
+  *_103[j_147] = _104;
+  j_189 = j_147 + 1;
+
+  <bb 20> :
+  # j_147 = PHI <j_180(18), j_189(19)>
+  if (j_147 < m_163(D))
+    goto <bb 19>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 21> :
+  i_181 = i_143 + 1;
+
+  <bb 22> :
+  # i_143 = PHI <i_165(17), i_181(21)>
+  if (i_143 < n_166(D))
+    goto <bb 18>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 23> :
+  i_167 = 0;
+  goto <bb 31>; [INV]
+
+  <bb 24> :
+  _105 = (long unsigned int) i_144;
+  _106 = _105 * 9600;
+  _107 = corr_168(D) + _106;
+  *_107[i_144] = 1.0e+0;
+  j_171 = i_144 + 1;
+  goto <bb 29>; [INV]
+
+  <bb 25> :
+  _108 = (long unsigned int) i_144;
+  _109 = _108 * 9600;
+  _110 = corr_168(D) + _109;
+  *_110[j_148] = 0.0;
+  k_174 = 0;
+  goto <bb 27>; [INV]
+
+  <bb 26> :
+  _111 = (long unsigned int) i_144;
+  _112 = _111 * 9600;
+  _113 = corr_168(D) + _112;
+  _114 = *_113[j_148];
+  _115 = (long unsigned int) k_149;
+  _116 = _115 * 9600;
+  _117 = data_177(D) + _116;
+  _118 = *_117[i_144];
+  _119 = (long unsigned int) k_149;
+  _120 = _119 * 9600;
+  _121 = data_177(D) + _120;
+  _122 = *_121[j_148];
+  _123 = _118 * _122;
+  _124 = (long unsigned int) i_144;
+  _125 = _124 * 9600;
+  _126 = corr_168(D) + _125;
+  _127 = _114 + _123;
+  *_126[j_148] = _127;
+  k_179 = k_149 + 1;
+
+  <bb 27> :
+  # k_149 = PHI <k_174(25), k_179(26)>
+  if (k_149 < n_166(D))
+    goto <bb 26>; [INV]
+  else
+    goto <bb 28>; [INV]
+
+  <bb 28> :
+  _128 = (long unsigned int) i_144;
+  _129 = _128 * 9600;
+  _130 = corr_168(D) + _129;
+  _131 = (long unsigned int) j_148;
+  _132 = _131 * 9600;
+  _133 = corr_168(D) + _132;
+  _134 = *_130[j_148];
+  *_133[i_144] = _134;
+  j_176 = j_148 + 1;
+
+  <bb 29> :
+  # j_148 = PHI <j_171(24), j_176(28)>
+  if (j_148 < m_163(D))
+    goto <bb 25>; [INV]
+  else
+    goto <bb 30>; [INV]
+
+  <bb 30> :
+  i_172 = i_144 + 1;
+
+  <bb 31> :
+  # i_144 = PHI <i_167(23), i_172(30)>
+  _135 = m_163(D) + -1;
+  if (i_144 < _135)
+    goto <bb 24>; [INV]
+  else
+    goto <bb 32>; [INV]
+
+  <bb 32> :
+  _136 = (long unsigned int) m_163(D);
+  _137 = _136 * 9600;
+  _138 = _137 + 18446744073709542016;
+  _139 = corr_168(D) + _138;
+  _140 = m_163(D) + -1;
+  *_139[_140] = 1.0e+0;
+  return;
+
+}
+
+
+
+;; Function main (main, funcdef_no=9, decl_uid=4744, cgraph_uid=10, symbol_order=9)
+
+Released 0 names, 0.00%, removed 0 holes
+main (int argc, char * * argv)
+{
+  const unsigned char D.4766;
+  double[1200] * stddev;
+  double[1200] * mean;
+  double[1200][1200] * corr;
+  double[1400][1200] * data;
+  double float_n;
+  int m;
+  int n;
+  int D.4765;
+  double float_n.7_1;
+  char * _2;
+  int _3;
+  const unsigned char _20;
+  int _26;
+
+  <bb 2> :
+  n_5 = 1400;
+  m_6 = 1200;
+  data_9 = polybench_alloc_data (1680000, 8);
+  corr_11 = polybench_alloc_data (1440000, 8);
+  mean_13 = polybench_alloc_data (1200, 8);
+  stddev_15 = polybench_alloc_data (1200, 8);
+  init_array (m_6, n_5, &float_n, data_9);
+  float_n.7_1 = float_n;
+  kernel_correlation (m_6, n_5, float_n.7_1, data_9, corr_11, mean_13, stddev_15);
+  if (argc_18(D) > 42)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _2 = *argv_19(D);
+  _20 = MEM[(const unsigned char * {ref-all})_2];
+  _3 = (int) _20;
+  if (_3 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  print_array (m_6, corr_11);
+
+  <bb 5> :
+  free (data_9);
+  free (corr_11);
+  free (mean_13);
+  free (stddev_15);
+  _26 = 0;
+  float_n ={v} {CLOBBER};
+
+  <bb 6> :
+<L5>:
+  return _26;
+
+}
+
+

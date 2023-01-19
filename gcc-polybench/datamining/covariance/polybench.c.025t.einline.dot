@@ -1,0 +1,265 @@
+digraph "polybench.c.025t.einline" {
+overlap=false;
+subgraph "cluster_rtclock" {
+	style="dashed";
+	color="black";
+	label="rtclock ()";
+	fn_6_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_6_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_6_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|_1\ =\ 0.0;\l\
+}"];
+
+	fn_6_basic_block_3 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 3\>:\l\
+|\<L0\>:\l\
+|return\ _1;\l\
+}"];
+
+	fn_6_basic_block_0:s -> fn_6_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_6_basic_block_2:s -> fn_6_basic_block_3:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_6_basic_block_3:s -> fn_6_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_6_basic_block_0:s -> fn_6_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "cluster_polybench_flush_cache" {
+	style="dashed";
+	color="black";
+	label="polybench_flush_cache ()";
+	subgraph cluster_7_1 {
+	style="filled";
+	color="darkgreen";
+	fillcolor="grey88";
+	label="loop 1";
+	labeljust=l;
+	penwidth=2;
+	fn_7_basic_block_4 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 4\>:\l\
+|#\ i_6\ =\ PHI\ \<i_13(2),\ i_17(3)\>\l\
+|#\ tmp_7\ =\ PHI\ \<tmp_12(2),\ tmp_16(3)\>\l\
+|if\ (i_6\ \<\ cs_8)\l\
+\ \ goto\ \<bb\ 3\>;\ [INV]\l\
+else\l\
+\ \ goto\ \<bb\ 5\>;\ [INV]\l\
+}"];
+
+	fn_7_basic_block_3 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 3\>:\l\
+|_2\ =\ (long\ unsigned\ int)\ i_6;\l\
+|_3\ =\ _2\ *\ 8;\l\
+|_4\ =\ flush_11\ +\ _3;\l\
+|_5\ =\ *_4;\l\
+|tmp_16\ =\ tmp_7\ +\ _5;\l\
+|i_17\ =\ i_6\ +\ 1;\l\
+}"];
+
+	}
+	fn_7_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_7_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_7_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|cs_8\ =\ 4194560;\l\
+|_1\ =\ (long\ unsigned\ int)\ cs_8;\l\
+|flush_11\ =\ calloc\ (_1,\ 8);\l\
+|tmp_12\ =\ 0.0;\l\
+|i_13\ =\ 0;\l\
+goto\ \<bb\ 4\>;\ [INV]\l\
+}"];
+
+	fn_7_basic_block_5 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 5\>:\l\
+|if\ (tmp_7\ \<=\ 1.0e+1)\l\
+\ \ goto\ \<bb\ 7\>;\ [INV]\l\
+else\l\
+\ \ goto\ \<bb\ 6\>;\ [INV]\l\
+}"];
+
+	fn_7_basic_block_6 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 6\>:\l\
+|__assert_fail\ (\"tmp\ \<=\ 10.0\",\ \"polybench.c\",\ 123,\ &__PRETTY_FUNCTION__);\l\
+}"];
+
+	fn_7_basic_block_7 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 7\>:\l\
+|free\ (flush_11);\l\
+|return;\l\
+}"];
+
+	fn_7_basic_block_0:s -> fn_7_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_7_basic_block_2:s -> fn_7_basic_block_4:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_7_basic_block_3:s -> fn_7_basic_block_4:n [style="dotted,bold",color=blue,weight=10,constraint=false];
+	fn_7_basic_block_4:s -> fn_7_basic_block_3:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_7_basic_block_4:s -> fn_7_basic_block_5:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_7_basic_block_5:s -> fn_7_basic_block_7:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_7_basic_block_5:s -> fn_7_basic_block_6:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_7_basic_block_7:s -> fn_7_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_7_basic_block_0:s -> fn_7_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "cluster_polybench_prepare_instruments" {
+	style="dashed";
+	color="black";
+	label="polybench_prepare_instruments ()";
+	fn_8_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_8_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_8_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|polybench_flush_cache\ ();\l\
+|return;\l\
+}"];
+
+	fn_8_basic_block_0:s -> fn_8_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_8_basic_block_2:s -> fn_8_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_8_basic_block_0:s -> fn_8_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "cluster_polybench_timer_start" {
+	style="dashed";
+	color="black";
+	label="polybench_timer_start ()";
+	fn_9_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_9_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_9_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|polybench_prepare_instruments\ ();\l\
+|_1\ =\ rtclock\ ();\l\
+|polybench_t_start\ =\ _1;\l\
+|return;\l\
+}"];
+
+	fn_9_basic_block_0:s -> fn_9_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_9_basic_block_2:s -> fn_9_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_9_basic_block_0:s -> fn_9_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "cluster_polybench_timer_stop" {
+	style="dashed";
+	color="black";
+	label="polybench_timer_stop ()";
+	fn_10_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_10_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_10_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|_1\ =\ rtclock\ ();\l\
+|polybench_t_end\ =\ _1;\l\
+|return;\l\
+}"];
+
+	fn_10_basic_block_0:s -> fn_10_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_10_basic_block_2:s -> fn_10_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_10_basic_block_0:s -> fn_10_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "cluster_polybench_timer_print" {
+	style="dashed";
+	color="black";
+	label="polybench_timer_print ()";
+	fn_11_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_11_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_11_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|polybench_t_end.0_1\ =\ polybench_t_end;\l\
+|polybench_t_start.1_2\ =\ polybench_t_start;\l\
+|_3\ =\ polybench_t_end.0_1\ -\ polybench_t_start.1_2;\l\
+|printf\ (\"%0.6f\\n\",\ _3);\l\
+|return;\l\
+}"];
+
+	fn_11_basic_block_0:s -> fn_11_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_11_basic_block_2:s -> fn_11_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_11_basic_block_0:s -> fn_11_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "cluster_xmalloc" {
+	style="dashed";
+	color="black";
+	label="xmalloc ()";
+	fn_12_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_12_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_12_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|ret\ =\ 0B;\l\
+|polybench_inter_array_padding_sz.2_1\ =\ polybench_inter_array_padding_sz;\l\
+|polybench_inter_array_padding_sz\ =\ polybench_inter_array_padding_sz.2_1;\l\
+|polybench_inter_array_padding_sz.3_2\ =\ polybench_inter_array_padding_sz;\l\
+|padded_sz_9\ =\ alloc_sz_8(D)\ +\ polybench_inter_array_padding_sz.3_2;\l\
+|err_11\ =\ posix_memalign\ (&ret,\ 4096,\ padded_sz_9);\l\
+|ret.4_3\ =\ ret;\l\
+|if\ (ret.4_3\ ==\ 0B)\l\
+\ \ goto\ \<bb\ 4\>;\ [INV]\l\
+else\l\
+\ \ goto\ \<bb\ 3\>;\ [INV]\l\
+}"];
+
+	fn_12_basic_block_3 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 3\>:\l\
+|if\ (err_11\ !=\ 0)\l\
+\ \ goto\ \<bb\ 4\>;\ [INV]\l\
+else\l\
+\ \ goto\ \<bb\ 5\>;\ [INV]\l\
+}"];
+
+	fn_12_basic_block_4 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 4\>:\l\
+|stderr.5_4\ =\ stderr;\l\
+|__builtin_fwrite\ (\"[PolyBench]\ posix_memalign:\ cannot\ allocate\ memory\",\ 1,\ 50,\ stderr.5_4);\l\
+|exit\ (1);\l\
+}"];
+
+	fn_12_basic_block_5 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 5\>:\l\
+|_12\ =\ ret;\l\
+|ret\ =\{v\}\ \{CLOBBER\};\l\
+}"];
+
+	fn_12_basic_block_6 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 6\>:\l\
+|\<L4\>:\l\
+|return\ _12;\l\
+}"];
+
+	fn_12_basic_block_0:s -> fn_12_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_12_basic_block_2:s -> fn_12_basic_block_4:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_12_basic_block_2:s -> fn_12_basic_block_3:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_12_basic_block_3:s -> fn_12_basic_block_4:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_12_basic_block_3:s -> fn_12_basic_block_5:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_12_basic_block_5:s -> fn_12_basic_block_6:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_12_basic_block_6:s -> fn_12_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_12_basic_block_0:s -> fn_12_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "cluster_polybench_free_data" {
+	style="dashed";
+	color="black";
+	label="polybench_free_data ()";
+	fn_13_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_13_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_13_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|free\ (ptr_2(D));\l\
+|return;\l\
+}"];
+
+	fn_13_basic_block_0:s -> fn_13_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_13_basic_block_2:s -> fn_13_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_13_basic_block_0:s -> fn_13_basic_block_1:n [style="invis",constraint=true];
+}
+subgraph "cluster_polybench_alloc_data" {
+	style="dashed";
+	color="black";
+	label="polybench_alloc_data ()";
+	fn_14_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_14_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_14_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 2\>:\l\
+|val_3\ =\ n_2(D);\l\
+|_1\ =\ (long\ unsigned\ int)\ elt_size_4(D);\l\
+|val_5\ =\ val_3\ *\ _1;\l\
+|ret_8\ =\ xmalloc\ (val_5);\l\
+|_9\ =\ ret_8;\l\
+}"];
+
+	fn_14_basic_block_3 [shape=record,style=filled,fillcolor=lightgrey,label="{\<bb\ 3\>:\l\
+|\<L0\>:\l\
+|return\ _9;\l\
+}"];
+
+	fn_14_basic_block_0:s -> fn_14_basic_block_2:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_14_basic_block_2:s -> fn_14_basic_block_3:n [style="solid,bold",color=blue,weight=100,constraint=true];
+	fn_14_basic_block_3:s -> fn_14_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true];
+	fn_14_basic_block_0:s -> fn_14_basic_block_1:n [style="invis",constraint=true];
+}
+}

@@ -1,0 +1,5 @@
+
+ronaldo@ronaldo:~/Documents/ML-MC-Model/gcc-polybench/datamining/correlation$ cp ../../utilities/polybench.h ./polybench.h
+ronaldo@ronaldo:~/Documents/ML-MC-Model/gcc-polybench/datamining/correlation$ gcc -fdump-tree-all-graph -I./ correlation.c polybench.c -g -lm
+ronaldo@ronaldo:~/Documents/ML-MC-Model/gcc-polybench/datamining/correlation$ dot -Tpdf correlation.c.019t.ssa.dot -o correlation.pdf
+

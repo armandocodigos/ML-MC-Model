@@ -1,0 +1,130 @@
+rtclock ()
+{
+  double D.5027;
+
+  D.5027 = 0.0;
+  return D.5027;
+}
+
+
+polybench_flush_cache ()
+{
+  int cs;
+  double * flush;
+  int i;
+  double tmp;
+  static const char __PRETTY_FUNCTION__[22] = "polybench_flush_cache";
+
+  cs = 4194560;
+  _1 = (long unsigned int) cs;
+  flush = calloc (_1, 8);
+  tmp = 0.0;
+  i = 0;
+  goto <D.5000>;
+  <D.4999>:
+  _2 = (long unsigned int) i;
+  _3 = _2 * 8;
+  _4 = flush + _3;
+  _5 = *_4;
+  tmp = tmp + _5;
+  i = i + 1;
+  <D.5000>:
+  if (i < cs) goto <D.4999>; else goto <D.5001>;
+  <D.5001>:
+  {
+    if (tmp <= 1.0e+1) goto <D.5029>; else goto <D.5030>;
+    <D.5029>:
+    goto <D.5031>;
+    <D.5030>:
+    __assert_fail ("tmp <= 10.0", "polybench.c", 123, &__PRETTY_FUNCTION__);
+    <D.5031>:
+  }
+  free (flush);
+}
+
+
+polybench_prepare_instruments ()
+{
+  polybench_flush_cache ();
+}
+
+
+polybench_timer_start ()
+{
+  polybench_prepare_instruments ();
+  _1 = rtclock ();
+  polybench_t_start = _1;
+}
+
+
+polybench_timer_stop ()
+{
+  _1 = rtclock ();
+  polybench_t_end = _1;
+}
+
+
+polybench_timer_print ()
+{
+  polybench_t_end.0_1 = polybench_t_end;
+  polybench_t_start.1_2 = polybench_t_start;
+  _3 = polybench_t_end.0_1 - polybench_t_start.1_2;
+  printf ("%0.6f\n", _3);
+}
+
+
+xmalloc (size_t alloc_sz)
+{
+  void * D.5035;
+  void * ret;
+  size_t padded_sz;
+  int err;
+
+  try
+    {
+      ret = 0B;
+      polybench_inter_array_padding_sz.2_1 = polybench_inter_array_padding_sz;
+      polybench_inter_array_padding_sz = polybench_inter_array_padding_sz.2_1;
+      polybench_inter_array_padding_sz.3_2 = polybench_inter_array_padding_sz;
+      padded_sz = alloc_sz + polybench_inter_array_padding_sz.3_2;
+      err = posix_memalign (&ret, 4096, padded_sz);
+      ret.4_3 = ret;
+      if (ret.4_3 == 0B) goto <D.5032>; else goto <D.5034>;
+      <D.5034>:
+      if (err != 0) goto <D.5032>; else goto <D.5033>;
+      <D.5032>:
+      stderr.5_4 = stderr;
+      fprintf (stderr.5_4, "[PolyBench] posix_memalign: cannot allocate memory");
+      exit (1);
+      <D.5033>:
+      D.5035 = ret;
+      return D.5035;
+    }
+  finally
+    {
+      ret = {CLOBBER};
+    }
+}
+
+
+polybench_free_data (void * ptr)
+{
+  free (ptr);
+}
+
+
+polybench_alloc_data (long long unsigned int n, int elt_size)
+{
+  void * D.5038;
+  size_t val;
+  void * ret;
+
+  val = n;
+  _1 = (long unsigned int) elt_size;
+  val = val * _1;
+  ret = xmalloc (val);
+  D.5038 = ret;
+  return D.5038;
+}
+
+
