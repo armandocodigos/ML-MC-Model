@@ -29,3 +29,11 @@ def clean_graph_regex(headers, filename="graph_regex"):
         csvwriter = csv.writer(csvfile) 
         csvwriter.writerow(headers)
 #------------------------------------------------------
+def load_dots(folder):
+    dots = {}
+    for subdir, dirs, files in os.walk(folder):
+        for file in files:
+            if (file.endswith(".dot")):
+                dots[file.split('.')[0]] = {'file':subdir + os.sep + file}
+    return dots
+#------------------------------------------------------
